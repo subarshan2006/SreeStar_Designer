@@ -168,32 +168,32 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Accessible: all items are links with descriptive text
 
 ### Sprint 15 — Bridal & Grand Spotlight Section
-- [ ] Pinned scroll section (GSAP ScrollTrigger pin)
-- [ ] Wedding/grand blouse designs change one after another as user scrolls
-- [ ] Large full-width images with short descriptive text alongside
-- [ ] Progress indicator (dots or fraction: 1/5)
-- [ ] Each slide has "Enquire" and "Book" CTAs
-- [ ] Smooth crossfade or clip-path reveal between slides
-- [ ] `prefers-reduced-motion`: simple scroll with no pinning
+- [x] Pinned scroll section (GSAP ScrollTrigger pin)
+- [x] Wedding/grand blouse designs change one after another as user scrolls
+- [x] Large full-width images with short descriptive text alongside
+- [x] Progress indicator (dots or fraction: 1/5)
+- [x] Each slide has "Enquire" and "Book" CTAs
+- [x] Smooth crossfade or clip-path reveal between slides
+- [x] `prefers-reduced-motion`: simple scroll with no pinning
 
 ### Sprint 16 — Video Reels Section
-- [ ] Horizontal scrollable row of vertical short videos
-- [ ] Lazy-load: download only when scrolled into view
-- [ ] Muted autoplay when in viewport (Intersection Observer)
-- [ ] Tap/click to unmute + show controls
-- [ ] Poster image displayed before video loads
-- [ ] Compressed MP4/WebM formats
-- [ ] YouTube/Instagram embeds load only on click (facade pattern)
-- [ ] Mobile: swipeable horizontal scroll
+- [x] Horizontal scrollable row of vertical short videos
+- [x] Lazy-load: download only when scrolled into view
+- [x] Muted autoplay when in viewport (Intersection Observer)
+- [x] Tap/click to unmute + show controls
+- [x] Poster image displayed before video loads
+- [x] Compressed MP4/WebM formats
+- [x] YouTube/Instagram embeds load only on click (facade pattern)
+- [x] Mobile: swipeable horizontal scroll
 
 ### Sprint 17 — Process Timeline + Why Us + Counters
-- [ ] **Our Process**: animated horizontal timeline
+- [x] **Our Process**: animated horizontal timeline
   - Steps: Choose a Design → Measurements → Stitching → Fitting → Delivery
   - Each step reveals with a scroll-triggered animation (icon + text)
   - Connected by animated line that draws as you scroll
-- [ ] **Why Us**: 3–4 value cards with icons
+- [x] **Why Us**: 3–4 value cards with icons
   - Perfect-fit guarantee, on-time delivery, premium finishing, 500+ designs
-- [ ] **Animated Counters**: numbers count up when scrolled into view
+- [x] **Animated Counters**: numbers count up when scrolled into view
   - 500+ Designs, [X]+ Happy Clients, [Y] Years
   - Use GSAP or CountUp.js with intersection observer trigger
 

@@ -10,6 +10,9 @@ import { ImageWall } from '@/components/home/ImageWall'
 import { DesignLightbox } from '@/components/home/DesignLightbox'
 import { WelcomeScrubText } from '@/components/home/WelcomeScrubText'
 import { CategoryIndex } from '@/components/home/CategoryIndex'
+import { BridalSpotlight } from '@/components/home/BridalSpotlight'
+import { VideoReels } from '@/components/home/VideoReels'
+import { ProcessAndWhyUs } from '@/components/home/ProcessAndWhyUs'
 import { GiantWordmark } from '@/components/ui/GiantWordmark'
 import { Button } from '@/components/ui/Button'
 import { Heading, Body, Caption } from '@/components/ui/typography'
@@ -80,6 +83,30 @@ export function HomeView({ initialDesigns }: HomeViewProps) {
           SPRINT 14: CATEGORY INDEX (Typographic List & Floating Cursor Preview)
           ========================================================= */}
       <CategoryIndex />
+
+      {/* =========================================================
+          SPRINT 15: BRIDAL & GRAND SPOTLIGHT
+          ========================================================= */}
+      <BridalSpotlight onOpenBooking={(code) => handleOpenBooking(code)} />
+
+      {/* =========================================================
+          SPRINT 16: VIDEO REELS (Finished Looks & Fitting Moments)
+          ========================================================= */}
+      <VideoReels
+        onSelectReelCode={(code) => {
+          const matched = initialDesigns.find((d) => d.designCode === code)
+          if (matched) {
+            setSelectedDesign(matched)
+          } else {
+            handleOpenBooking(code)
+          }
+        }}
+      />
+
+      {/* =========================================================
+          SPRINT 17: PROCESS TIMELINE + WHY US + ANIMATED COUNTERS
+          ========================================================= */}
+      <ProcessAndWhyUs onOpenBooking={() => handleOpenBooking()} />
 
       {/* =========================================================
           QUICK-VIEW LIGHTBOX MODAL (Sprint 11 & 12)
