@@ -110,33 +110,33 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 ## 📄 PHASE 2 — CORE PAGES (Sprints 9–18)
 
 ### Sprint 9 — Hero Section (Home)
-- [ ] Giant wordmark spanning full viewport width at the top
-- [ ] Short tagline positioned to the right: "Custom blouses + women's tailoring."
-- [ ] Image overlay zone: 3–5 garment images sit IN FRONT of the wordmark, partially covering it
-- [ ] Use CSS `z-index` layering so images overlap the text naturally
-- [ ] Subtle intro load animation: images slide up with staggered delay per column
-- [ ] Responsive: wordmark scales via `clamp()` or `vw` units
-- [ ] Mobile: 2-column staggered layout, wordmark still visible behind images
+- [x] Giant wordmark spanning full viewport width at the top
+- [x] Short tagline positioned to the right: "Custom blouses + women's tailoring."
+- [x] Image overlay zone: 3–5 garment images sit IN FRONT of the wordmark, partially covering it
+- [x] Use CSS `z-index` layering so images overlap the text naturally
+- [x] Subtle intro load animation: images slide up with staggered delay per column
+- [x] Responsive: wordmark scales via `clamp()` or `vw` units
+- [x] Mobile: 2-column staggered layout, wordmark still visible behind images
 
 ### Sprint 10 — Staggered Image Wall Component
-- [ ] Build `<ImageWall>` component: edge-to-edge grid, 5–6 vertical columns
-- [ ] Small even gutters (~16–20px), outer columns cropped by screen edges
-- [ ] Each column starts at a different vertical offset (staggered, not flat)
-- [ ] Images keep natural aspect ratios and stack tightly
-- [ ] Auto-distribute images across columns, balancing column heights (masonry algorithm)
-- [ ] Caption beneath each image: design name + code (e.g., "Bridal Maggam Blouse — D-0123")
-- [ ] Responsive columns: desktop 5–6, tablet 3–4, mobile 2
-- [ ] Mobile: still edge-to-edge and offset
-- [ ] Virtualization: only render images near viewport (react-virtual or intersection observer)
+- [x] Build `<ImageWall>` component: edge-to-edge grid, 5–6 vertical columns
+- [x] Small even gutters (~16–20px), outer columns cropped by screen edges
+- [x] Each column starts at a different vertical offset (staggered, not flat)
+- [x] Images keep natural aspect ratios and stack tightly
+- [x] Auto-distribute images across columns, balancing column heights (masonry algorithm)
+- [x] Caption beneath each image: design name + code (e.g., "Bridal Maggam Blouse — D-0123")
+- [x] Responsive columns: desktop 5–6, tablet 3–4, mobile 2
+- [x] Mobile: still edge-to-edge and offset
+- [x] Virtualization: only render images near viewport (react-virtual or intersection observer)
 
 ### Sprint 11 — Image Wall Interactions
-- [ ] Desktop hover: image scales slightly (1.03x), caption fades in with opacity transition
-- [ ] Mobile tap: same scale + caption behavior
-- [ ] Column parallax: each column drifts at slightly different scroll speed via GSAP ScrollTrigger
-- [ ] End of wall: "View all 500+ designs →" link
-- [ ] Click/tap image → open lightbox (Sprint 12)
-- [ ] Lazy-loading: load images as columns scroll into view
-- [ ] Performance: requestAnimationFrame for scroll parallax, `will-change: transform`
+- [x] Desktop hover: image scales slightly (1.03x), caption fades in with opacity transition
+- [x] Mobile tap: same scale + caption behavior
+- [x] Column parallax: each column drifts at slightly different scroll speed via GSAP ScrollTrigger
+- [x] End of wall: "View all 500+ designs →" link
+- [x] Click/tap image → open lightbox (Sprint 12)
+- [x] Lazy-loading: load images as columns scroll into view
+- [x] Performance: requestAnimationFrame for scroll parallax, `will-change: transform`
 
 ### Sprint 12 — Lightbox / Quick-View
 - [ ] Full-screen lightbox overlay with large image
