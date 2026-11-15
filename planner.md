@@ -535,14 +535,14 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Skeleton loading states for new batches
 
 ### Sprint 43 — About Page
-- [ ] Shop story section with founder/tailor portrait
-- [ ] Workshop behind-the-scenes video (lazy-loaded)
-- [ ] Values section: craftsmanship, precision, personal touch
-- [ ] Team section with photos
-- [ ] Milestones timeline (year founded, 100th client, 500 designs, etc.)
-- [ ] Staggered image wall as a visual strip (reuse `<ImageWall>` component)
-- [ ] CTA: "Book a Fitting" + "View Our Designs"
-- [ ] SEO: About page targets "[SHOP NAME] tailor [CITY]"
+- [x] Shop story section with founder/tailor portrait
+- [x] Workshop behind-the-scenes video (lazy-loaded)
+- [x] Values section: craftsmanship, precision, personal touch
+- [x] Team section with photos
+- [x] Milestones timeline (year founded, 100th client, 500 designs, etc.)
+- [x] Staggered image wall as a visual strip (reuse `<ImageWall>` component)
+- [x] CTA: "Book a Fitting" + "View Our Designs"
+- [x] SEO: About page targets "[SHOP NAME] tailor [CITY]"
 
 ### Sprint 44 — Contact Page
 - [ ] Full booking/enquiry form (same as Sprint 40 but full-page layout)

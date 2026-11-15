@@ -241,5 +241,33 @@ export function getArticleSchema(post: {
   }
 }
 
+/**
+ * 9. AboutPage Schema (Establishes brand authority & E-E-A-T signals in Google Knowledge Graph)
+ */
+export function getAboutPageSchema() {
+  const aboutUrl = `${BASE_URL}/about`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${aboutUrl}#aboutpage`,
+    name: `About ${SITE_CONFIG.shopName} Tailoring Atelier Chennai`,
+    description: `The heritage, master cutters, and craftsmanship philosophy of ${SITE_CONFIG.shopName} — Chennai's premier bespoke women's custom blouse and tailoring studio.`,
+    url: aboutUrl,
+    mainEntity: {
+      '@type': 'LocalBusiness',
+      name: `${SITE_CONFIG.shopName} Tailoring Atelier`,
+      telephone: SITE_CONFIG.phone,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: SITE_CONFIG.address,
+        addressLocality: SITE_CONFIG.city,
+        addressRegion: 'Tamil Nadu',
+        postalCode: '600017',
+        addressCountry: 'IN',
+      },
+    },
+  }
+}
+
 export { JsonLd } from '@/components/seo/JsonLd'
 

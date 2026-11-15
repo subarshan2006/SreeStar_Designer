@@ -57,8 +57,8 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Centre-Right: Collections / About / Contact */}
-          <div className="hidden md:flex items-center gap-8 font-sans text-xs tracking-widest uppercase opacity-90 pointer-events-auto">
+          {/* Centre-Right: Collections / About / Journal / Contact */}
+          <div className="hidden md:flex items-center gap-7 font-sans text-xs tracking-widest uppercase opacity-90 pointer-events-auto">
             <Link
               href="/collections"
               className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
@@ -66,10 +66,16 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
               Archive
             </Link>
             <Link
-              href="/#about"
+              href="/about"
               className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
             >
               About
+            </Link>
+            <Link
+              href="/blog"
+              className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
+            >
+              Journal
             </Link>
             <button
               type="button"
@@ -79,7 +85,7 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
               Gallery
             </button>
             <Link
-              href="/#contact"
+              href="/contact"
               className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
             >
               Contact
@@ -155,11 +161,18 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
                 Haute Couture Archive (500+)
               </Link>
               <Link
-                href="/#about"
+                href="/about"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-2 border-b border-surface-border text-charcoal"
               >
                 About Tailoring Studio
+              </Link>
+              <Link
+                href="/blog"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block py-2 border-b border-surface-border text-charcoal"
+              >
+                Atelier Journal & Guides
               </Link>
               <Link
                 href="/styleguide"
@@ -169,11 +182,11 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
                 Design System & Styleguide
               </Link>
               <Link
-                href="/#contact"
+                href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-2 text-charcoal"
               >
-                Contact & Google Maps
+                Contact & Studio Fitting
               </Link>
               <button
                 type="button"
