@@ -428,9 +428,9 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Encourage Google reviews with post-delivery WhatsApp message template
 
 ### Sprint 36 — Content SEO (Blog Foundation)
-- [ ] Set up blog CMS schema in Sanity: `blogPost` (title, slug, body, featuredImage, category, tags, author, publishDate, seoMeta)
-- [ ] Create `/blog` listing page and `/blog/[slug]` detail page
-- [ ] Plan first 20 blog posts (titles + target keywords):
+- [x] Set up blog CMS schema in Sanity: `blogPost` (title, slug, body, featuredImage, category, tags, author, publishDate, seoMeta)
+- [x] Create `/blog` listing page and `/blog/[slug]` detail page
+- [x] Plan first 20 blog posts (titles + target keywords):
   1. "Top 50 Bridal Blouse Designs for 2026 Weddings"
   2. "How to Choose the Perfect Blouse Design for Your Saree"
   3. "Maggam Work vs Aari Work: What's the Difference?"
@@ -451,38 +451,38 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
   18. "How We Stitch 500+ Unique Designs Every Year"
   19. "Frock Designs for Girls: Casual to Grand Party Wear"
   20. "Your First Custom Blouse: What to Expect"
-- [ ] Add Article schema to blog posts
-- [ ] Internal link blog posts → collection pages → design details
-- [ ] Add blog post CTAs: "See this design" → collection, "Book a fitting" → contact
+- [x] Add Article schema to blog posts
+- [x] Internal link blog posts → collection pages → design details
+- [x] Add blog post CTAs: "See this design" → collection, "Book a fitting" → contact
 
 ### Sprint 37 — Page Speed & Core Web Vitals
-- [ ] **LCP (Largest Contentful Paint) < 2.5s**:
+- [x] **LCP (Largest Contentful Paint) < 2.5s**:
   - Preload hero image with `priority` flag
   - Inline critical CSS
   - Use `next/font` for font preloading
   - Server-side render above-the-fold content
-- [ ] **FID / INP (Interaction to Next Paint) < 200ms**:
+- [x] **FID / INP (Interaction to Next Paint) < 200ms**:
   - Defer non-critical JS (analytics, animations below fold)
   - Code-split GSAP: load only when needed
   - Use `dynamic()` imports for heavy components
-- [ ] **CLS (Cumulative Layout Shift) < 0.1**:
+- [x] **CLS (Cumulative Layout Shift) < 0.1**:
   - Set explicit width/height on all images
   - Reserve space for dynamic content (testimonials, videos)
   - No layout-shifting fonts (use `font-display: swap` with size-adjust)
-- [ ] Compress all JS/CSS with Brotli
-- [ ] Enable HTTP/2 push for critical assets
-- [ ] Run Lighthouse CI in build pipeline: fail if Performance < 90
-- [ ] Test on WebPageTest with 4G throttling from India
+- [x] Compress all JS/CSS with Brotli
+- [x] Enable HTTP/2 push for critical assets
+- [x] Run Lighthouse CI in build pipeline: fail if Performance < 90
+- [x] Test on WebPageTest with 4G throttling from India
 
 ### Sprint 38 — SEO Monitoring & Tools Setup
-- [ ] Set up Google Search Console and submit sitemap
-- [ ] Set up Google Analytics 4 with enhanced measurements
-- [ ] Configure Bing Webmaster Tools
-- [ ] Set up rank tracking for top 50 keywords (Ahrefs/SEMrush/Ubersuggest)
-- [ ] Create SEO dashboard: organic traffic, keyword rankings, top pages, Core Web Vitals
-- [ ] Set up crawl monitoring: check for 404s, broken links, redirect chains
-- [ ] Install and configure `next-seo` or custom SEO component for easy per-page overrides
-- [ ] Create an SEO checklist for every new design/blog post added to CMS
+- [x] Set up Google Search Console and submit sitemap
+- [x] Set up Google Analytics 4 with enhanced measurements
+- [x] Configure Bing Webmaster Tools
+- [x] Set up rank tracking for top 50 keywords (Ahrefs/SEMrush/Ubersuggest)
+- [x] Create SEO dashboard: organic traffic, keyword rankings, top pages, Core Web Vitals
+- [x] Set up crawl monitoring: check for 404s, broken links, redirect chains
+- [x] Install and configure `next-seo` or custom SEO component for easy per-page overrides
+- [x] Create an SEO checklist for every new design/blog post added to CMS
 
 ---
 

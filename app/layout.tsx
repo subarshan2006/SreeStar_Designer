@@ -86,12 +86,19 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'google-site-verification-sreestar-chennai',
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || 'bing-site-verification-sreestar',
+    },
+  },
 }
 
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { JsonLd, getLocalBusinessSchema } from '@/lib/schema'
+import { GoogleAnalytics } from '@/components/seo/GoogleAnalytics'
 
 export default function RootLayout({
   children,
@@ -104,6 +111,7 @@ export default function RootLayout({
       className={`${cinzel.variable} ${playfair.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory">
+        <GoogleAnalytics />
         <JsonLd schema={getLocalBusinessSchema()} />
         <SmoothScrollProvider>
           <CustomCursor />

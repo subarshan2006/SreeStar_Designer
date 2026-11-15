@@ -5,6 +5,7 @@ import { testimonialType } from './testimonial'
 import { faqType } from './faq'
 import { siteSettingsType } from './siteSettings'
 import { videoType } from './video'
+import { blogPostType } from './blogPost'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,5 +15,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     faqType,
     siteSettingsType,
     videoType,
+    blogPostType,
   ],
 }

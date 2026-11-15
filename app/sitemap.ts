@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
 import { getAllDesigns } from '@/lib/api'
 import { CHENNAI_LOCALITIES } from '@/lib/local-seo'
+import { getAllBlogPosts } from '@/lib/blog'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sreestar.com'
@@ -17,6 +18,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/collections`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 0.9,
@@ -40,6 +47,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.3,
     },
   ]
+
+  // Dynamic Blog editorial guides
+  const posts = await getAllBlogPosts()
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: `${post.publishDate}T00:00:00.000Z`,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
 
   // Dynamic Chennai locality pages for Local SEO
   const localityRoutes: MetadataRoute.Sitemap = CHENNAI_LOCALITIES.map((loc) => ({
@@ -66,5 +82,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }))
 
-  return [...staticRoutes, ...localityRoutes, ...categoryRoutes, ...designRoutes]
+  return [...staticRoutes, ...blogRoutes, ...localityRoutes, ...categoryRoutes, ...designRoutes]
 }

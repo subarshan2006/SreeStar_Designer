@@ -197,5 +197,49 @@ export function getVideoObjectSchema(video: {
   }
 }
 
+/**
+ * 8. Article Schema (For Blog posts to earn Google Discover & News snippets)
+ */
+export function getArticleSchema(post: {
+  title: string
+  slug: string
+  excerpt: string
+  publishDate: string
+  author: string
+  featuredImage: string
+}) {
+  const fullImg = post.featuredImage.startsWith('http')
+    ? post.featuredImage
+    : `${BASE_URL}${post.featuredImage}`
+  const articleUrl = `${BASE_URL}/blog/${post.slug}`
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${articleUrl}#article`,
+    headline: post.title,
+    description: post.excerpt,
+    image: [fullImg],
+    datePublished: post.publishDate,
+    dateModified: post.publishDate,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: `${SITE_CONFIG.shopName} Tailoring Atelier`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/placeholders/placeholder-d-0001.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': articleUrl,
+    },
+  }
+}
+
 export { JsonLd } from '@/components/seo/JsonLd'
 

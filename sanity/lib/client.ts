@@ -1,5 +1,3 @@
-import { SITE_CONFIG } from '@/lib/constants'
-
 export interface DesignItem {
   id: string
   title: string
