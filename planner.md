@@ -139,33 +139,33 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Performance: requestAnimationFrame for scroll parallax, `will-change: transform`
 
 ### Sprint 12 — Lightbox / Quick-View
-- [ ] Full-screen lightbox overlay with large image
-- [ ] Swipe/arrow to navigate to next/previous design
-- [ ] Display: design code, category, description
-- [ ] CTA buttons: "Enquire on WhatsApp about this design" (pre-filled message with design code)
-- [ ] CTA buttons: "Book a Fitting"
-- [ ] Close button + Escape key + click-outside to close
-- [ ] URL updates without full navigation (shallow routing)
-- [ ] Keyboard accessible: arrow keys to navigate, Tab through CTAs
-- [ ] Smooth open/close animation (scale + fade)
+- [x] Full-screen lightbox overlay with large image
+- [x] Swipe/arrow to navigate to next/previous design
+- [x] Display: design code, category, description
+- [x] CTA buttons: "Enquire on WhatsApp about this design" (pre-filled message with design code)
+- [x] CTA buttons: "Book a Fitting"
+- [x] Close button + Escape key + click-outside to close
+- [x] URL updates without full navigation (shallow routing)
+- [x] Keyboard accessible: arrow keys to navigate, Tab through CTAs
+- [x] Smooth open/close animation (scale + fade)
 
 ### Sprint 13 — Welcome Text (Scroll-Scrubbed)
-- [ ] Full-screen pinned section after the image wall
-- [ ] Large statement text (e.g., "Welcome to [SHOP NAME]. Every blouse begins with your measurements and ends with your confidence...")
-- [ ] GSAP ScrollTrigger with `scrub: true` and `pin: true`
-- [ ] Words reveal one by one as user scrolls: each word transitions from faint/invisible → full opacity with a small upward slide
-- [ ] Scrolling back up hides words in reverse
-- [ ] When last word is fully visible, release the pin and continue scroll
-- [ ] `prefers-reduced-motion`: show full text immediately, no animation
-- [ ] Test on mobile: ensure pinning works with touch scroll
+- [x] Full-screen pinned section after the image wall
+- [x] Large statement text (e.g., "Welcome to [SHOP NAME]. Every blouse begins with your measurements and ends with your confidence...")
+- [x] GSAP ScrollTrigger with `scrub: true` and `pin: true`
+- [x] Words reveal one by one as user scrolls: each word transitions from faint/invisible → full opacity with a small upward slide
+- [x] Scrolling back up hides words in reverse
+- [x] When last word is fully visible, release the pin and continue scroll
+- [x] `prefers-reduced-motion`: show full text immediately, no animation
+- [x] Test on mobile: ensure pinning works with touch scroll
 
 ### Sprint 14 — Category Index Section
-- [ ] Large typographic list of categories: Bridal Blouses, Grand Blouses, Designer Blouses, Frocks, Kurtis, Churidars, 90s Collection
-- [ ] Desktop: hovering a category name shows a floating preview image that follows the cursor (GSAP magnetic effect)
-- [ ] Each category links to its filtered collection page
-- [ ] Mobile: stacked image cards with category name overlay
-- [ ] Staggered reveal animation on scroll (words slide up)
-- [ ] Accessible: all items are links with descriptive text
+- [x] Large typographic list of categories: Bridal Blouses, Grand Blouses, Designer Blouses, Frocks, Kurtis, Churidars, 90s Collection
+- [x] Desktop: hovering a category name shows a floating preview image that follows the cursor (GSAP magnetic effect)
+- [x] Each category links to its filtered collection page
+- [x] Mobile: stacked image cards with category name overlay
+- [x] Staggered reveal animation on scroll (words slide up)
+- [x] Accessible: all items are links with descriptive text
 
 ### Sprint 15 — Bridal & Grand Spotlight Section
 - [ ] Pinned scroll section (GSAP ScrollTrigger pin)

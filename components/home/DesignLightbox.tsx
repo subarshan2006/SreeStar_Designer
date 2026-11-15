@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import { X, ChevronLeft, ChevronRight, MessageCircle, Scissors } from 'lucide-react'
+import React, { useEffect, useRef } from 'react'
+import { X, ChevronLeft, ChevronRight, MessageCircle, Scissors, ArrowRight } from 'lucide-react'
 import { DesignRecord } from '@/lib/api'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { DesignCodeBadge, Heading, Caption, Body } from '@/components/ui/typography'
@@ -22,6 +22,26 @@ export function DesignLightbox({
   onPrev,
   onOpenBooking,
 }: DesignLightboxProps) {
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+
+  // Shallow URL routing: update URL query param ?design=CODE when open
+  useEffect(() => {
+    if (design) {
+      const url = new URL(window.location.href)
+      url.searchParams.set('design', design.designCode)
+      window.history.replaceState({}, '', url.toString())
+    } else {
+      const url = new URL(window.location.href)
+      if (url.searchParams.has('design')) {
+        url.searchParams.delete('design')
+        window.history.replaceState({}, '', url.toString())
+      }
+    }
+  }, [design])
+
+  // Keyboard navigation & body scroll lock
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!design) return
@@ -45,6 +65,30 @@ export function DesignLightbox({
 
   if (!design) return null
 
+  // Mobile swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    const distance = touchStartX.current - touchEndX.current
+    const minSwipeDistance = 50
+
+    if (distance > minSwipeDistance && onNext) {
+      onNext() // Swiped left -> Next
+    } else if (distance < -minSwipeDistance && onPrev) {
+      onPrev() // Swiped right -> Prev
+    }
+
+    touchStartX.current = null
+    touchEndX.current = null
+  }
+
   const waText = `Hi ${SITE_CONFIG.shopName}! I am interested in design code *${design.designCode}* (${design.title}). Can I know stitching price and fitting appointment availability?`
 
   return (
@@ -52,6 +96,16 @@ export function DesignLightbox({
       role="dialog"
       aria-modal="true"
       aria-label={`${design.title} details`}
+      ref={dialogRef}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onClick={(e) => {
+        // Close on clicking backdrop
+        if (e.target === e.currentTarget) {
+          onClose()
+        }
+      }}
       className="fixed inset-0 z-[120] flex items-center justify-center bg-charcoal/85 backdrop-blur-md p-3 sm:p-6 lg:p-10 animate-fade-up select-none"
     >
       <div className="relative w-full max-w-5xl bg-ivory rounded-sm shadow-2xl border border-surface-border overflow-hidden flex flex-col md:flex-row max-h-[92vh]">
@@ -60,7 +114,7 @@ export function DesignLightbox({
           type="button"
           onClick={onClose}
           aria-label="Close Lightbox"
-          className="absolute top-4 right-4 z-30 p-2 rounded-full bg-ivory/80 text-charcoal hover:bg-maroon hover:text-white transition-colors shadow-md"
+          className="absolute top-4 right-4 z-30 p-2 rounded-full bg-ivory/80 text-charcoal hover:bg-maroon hover:text-white transition-colors shadow-md focus:outline-none"
         >
           <X className="w-5 h-5" />
         </button>
@@ -71,7 +125,7 @@ export function DesignLightbox({
             type="button"
             onClick={onPrev}
             aria-label="Previous Design"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-ivory/90 text-charcoal hover:bg-maroon hover:text-white transition-all shadow-lg hidden sm:block"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-ivory/90 text-charcoal hover:bg-maroon hover:text-white transition-all shadow-lg hidden sm:block focus:outline-none"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -82,7 +136,7 @@ export function DesignLightbox({
             type="button"
             onClick={onNext}
             aria-label="Next Design"
-            className="absolute right-4 md:right-[42%] top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-ivory/90 text-charcoal hover:bg-maroon hover:text-white transition-all shadow-lg hidden sm:block"
+            className="absolute right-4 md:right-[42%] top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-ivory/90 text-charcoal hover:bg-maroon hover:text-white transition-all shadow-lg hidden sm:block focus:outline-none"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -173,6 +227,16 @@ export function DesignLightbox({
               <Scissors className="w-3.5 h-3.5" />
               <span>Book a Fitting with this Code</span>
             </button>
+
+            <div className="text-center pt-1">
+              <a
+                href={`/collections/${design.categoryName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                className="inline-flex items-center gap-1 text-[11px] font-mono text-charcoal-muted hover:text-maroon uppercase tracking-wider"
+              >
+                <span>View More in {design.categoryName}</span>
+                <ArrowRight className="w-3 h-3" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

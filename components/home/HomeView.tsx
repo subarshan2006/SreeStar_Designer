@@ -8,6 +8,8 @@ import { BookingModal } from '@/components/navigation/BookingModal'
 import { HeroSection } from '@/components/home/HeroSection'
 import { ImageWall } from '@/components/home/ImageWall'
 import { DesignLightbox } from '@/components/home/DesignLightbox'
+import { WelcomeScrubText } from '@/components/home/WelcomeScrubText'
+import { CategoryIndex } from '@/components/home/CategoryIndex'
 import { GiantWordmark } from '@/components/ui/GiantWordmark'
 import { Button } from '@/components/ui/Button'
 import { Heading, Body, Caption } from '@/components/ui/typography'
@@ -68,6 +70,16 @@ export function HomeView({ initialDesigns }: HomeViewProps) {
         onSelectDesign={(design) => setSelectedDesign(design)}
         onOpenBooking={(code) => handleOpenBooking(code)}
       />
+
+      {/* =========================================================
+          SPRINT 13: WELCOME TEXT (Scroll-Scrubbed Pin Section)
+          ========================================================= */}
+      <WelcomeScrubText />
+
+      {/* =========================================================
+          SPRINT 14: CATEGORY INDEX (Typographic List & Floating Cursor Preview)
+          ========================================================= */}
+      <CategoryIndex />
 
       {/* =========================================================
           QUICK-VIEW LIGHTBOX MODAL (Sprint 11 & 12)
