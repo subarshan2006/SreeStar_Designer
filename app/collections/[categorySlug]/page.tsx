@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Navbar } from '@/components/navigation/Navbar'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { Heading, Body, Caption, DesignCodeBadge } from '@/components/ui/typography'
+import { HeartButton } from '@/components/ui/HeartButton'
 import { getDesignsByCategory } from '@/lib/api'
 import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
 import { SITE_CONFIG } from '@/lib/constants'
@@ -115,18 +116,19 @@ export default async function CategoryPage({
                     className="group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
 
-                  {/* Overlaid Design Code Tag */}
+                  {/* Overlaid Design Code Tag & Heart Action */}
                   <div className="absolute top-2.5 left-2.5 z-20">
                     <DesignCodeBadge code={design.designCode} />
                   </div>
 
-                  {design.isNew && (
-                    <div className="absolute top-2.5 right-2.5 z-20">
+                  <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5">
+                    {design.isNew && (
                       <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 bg-maroon text-white rounded">
                         New
                       </span>
-                    </div>
-                  )}
+                    )}
+                    <HeartButton designCode={design.designCode} size="sm" />
+                  </div>
                 </Link>
 
                 {/* Garment Details & CTAs */}

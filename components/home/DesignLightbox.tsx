@@ -5,7 +5,8 @@ import { X, ChevronLeft, ChevronRight, MessageCircle, Scissors, ArrowRight } fro
 import { DesignRecord } from '@/lib/api'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { DesignCodeBadge, Heading, Caption, Body } from '@/components/ui/typography'
-import { SITE_CONFIG } from '@/lib/constants'
+import { HeartButton } from '@/components/ui/HeartButton'
+import { createWhatsAppLink } from '@/lib/whatsapp'
 
 export interface DesignLightboxProps {
   design: DesignRecord | null
@@ -89,8 +90,6 @@ export function DesignLightbox({
     touchEndX.current = null
   }
 
-  const waText = `Hi ${SITE_CONFIG.shopName}! I am interested in design code *${design.designCode}* (${design.title}). Can I know stitching price and fitting appointment availability?`
-
   return (
     <div
       role="dialog"
@@ -159,7 +158,10 @@ export function DesignLightbox({
         <div className="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-6">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <DesignCodeBadge code={design.designCode} />
+              <div className="flex items-center gap-2">
+                <DesignCodeBadge code={design.designCode} />
+                <HeartButton designCode={design.designCode} size="sm" />
+              </div>
               <span className="font-mono text-xs uppercase tracking-wider text-charcoal-subtle">
                 {design.categoryName}
               </span>
@@ -207,7 +209,11 @@ export function DesignLightbox({
           {/* Action CTAs */}
           <div className="space-y-3 pt-4 border-t border-surface-border">
             <a
-              href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`}
+              href={createWhatsAppLink({
+                type: 'design_enquiry',
+                designCode: design.designCode,
+                title: design.title,
+              })}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 bg-maroon text-white hover:bg-maroon-hover px-5 py-3.5 rounded text-xs font-mono uppercase tracking-widest font-bold shadow-md transition-all"

@@ -489,38 +489,38 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 ## 💰 PHASE 5 — CONVERSION & POLISH (Sprints 39–45)
 
 ### Sprint 39 — WhatsApp Integration
-- [ ] Build WhatsApp link generator: `https://wa.me/[NUMBER]?text=[ENCODED_MESSAGE]`
-- [ ] Pre-filled messages per context:
+- [x] Build WhatsApp link generator: `https://wa.me/[NUMBER]?text=[ENCODED_MESSAGE]`
+- [x] Pre-filled messages per context:
   - Design enquiry: "Hi! I'm interested in design [CODE] — [NAME]. Can I know more?"
   - Fitting booking: "Hi! I'd like to book a fitting appointment."
   - Wishlist share: "Hi! Here are the designs I liked: [CODE1], [CODE2], [CODE3]"
-- [ ] Sticky WhatsApp button on mobile (bottom-right, always visible)
-- [ ] Sticky call button on mobile (bottom-left)
-- [ ] WhatsApp click tracking: GA4 event `whatsapp_click` with design code
-- [ ] Call click tracking: GA4 event `call_click`
-- [ ] A/B test button positions and colors
+- [x] Sticky WhatsApp button on mobile (bottom-right, always visible)
+- [x] Sticky call button on mobile (bottom-left)
+- [x] WhatsApp click tracking: GA4 event `whatsapp_click` with design code
+- [x] Call click tracking: GA4 event `call_click`
+- [x] A/B test button positions and colors
 
 ### Sprint 40 — Booking Form & Lead Capture
-- [ ] Build booking form component:
+- [x] Build booking form component:
   - Fields: name, phone, garment type (dropdown), preferred date, design code (optional), reference photo upload, message
   - Validation: phone format, required fields, file size limit
-- [ ] Form submission pipeline:
+- [x] Form submission pipeline:
   - → WhatsApp API (pre-filled message to shop)
   - → Email notification (via Resend or SendGrid)
   - → Google Sheet (via Google Sheets API or Zapier)
-- [ ] Success state: confetti/checkmark animation + "We'll reply within 2 hours" message
-- [ ] Auto-reply: send WhatsApp confirmation to client
-- [ ] Form tracking: GA4 event `form_submit` with garment type
-- [ ] Anti-spam: honeypot field + rate limiting
+- [x] Success state: confetti/checkmark animation + "We'll reply within 2 hours" message
+- [x] Auto-reply: send WhatsApp confirmation to client
+- [x] Form tracking: GA4 event `form_submit` with garment type
+- [x] Anti-spam: honeypot field + rate limiting
 
 ### Sprint 41 — Wishlist / Heart Feature
-- [ ] Heart icon on every design card and lightbox
-- [ ] Save to localStorage (no login required)
-- [ ] Wishlist page/panel showing saved designs
-- [ ] "Share my wishlist on WhatsApp" button → sends all design codes in one message
-- [ ] Heart count animation (fill + scale bounce)
-- [ ] Persist across sessions (localStorage)
-- [ ] Tracking: GA4 event `wishlist_add`, `wishlist_share`
+- [x] Heart icon on every design card and lightbox
+- [x] Save to localStorage (no login required)
+- [x] Wishlist page/panel showing saved designs
+- [x] "Share my wishlist on WhatsApp" button → sends all design codes in one message
+- [x] Heart count animation (fill + scale bounce)
+- [x] Persist across sessions (localStorage)
+- [x] Tracking: GA4 event `wishlist_add`, `wishlist_share`
 
 ### Sprint 42 — Collections Page (Full Gallery)
 - [ ] Full edge-to-edge staggered image wall with ALL designs

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { DesignRecord } from '@/lib/api'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { DesignCodeBadge, Caption, Heading } from '@/components/ui/typography'
+import { HeartButton } from '@/components/ui/HeartButton'
 import { SITE_CONFIG } from '@/lib/constants'
 import { generateSeoAltText } from '@/lib/seo'
 import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider'
@@ -262,6 +263,8 @@ export function ImageWall({
 
                           {/* Hover Overlay Action Bar */}
                           <div className="absolute inset-0 bg-charcoal/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center gap-2">
+                            <HeartButton designCode={design.designCode} size="md" />
+
                             <button
                               type="button"
                               onClick={(e) => {

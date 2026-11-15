@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Navbar } from '@/components/navigation/Navbar'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { Heading, Body, Caption, DesignCodeBadge } from '@/components/ui/typography'
+import { HeartButton } from '@/components/ui/HeartButton'
 import { getDesignBySlug, getDesignsByCategory, getAllDesigns } from '@/lib/api'
 import { SITE_CONFIG } from '@/lib/constants'
 import { generateDesignMetadata, generateSeoAltText } from '@/lib/seo'
@@ -131,13 +132,14 @@ export default async function DesignDetailPage({
                   </span>
                 </div>
 
-                {design.isNew && (
-                  <div className="absolute top-4 right-4 z-20">
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+                  {design.isNew && (
                     <span className="font-mono text-xs uppercase font-bold tracking-widest px-3 py-1 bg-maroon text-white rounded shadow-md">
                       Fresh Creation
                     </span>
-                  </div>
-                )}
+                  )}
+                  <HeartButton designCode={design.designCode} size="md" />
+                </div>
               </div>
 
               {/* Garment Caption Footnote */}
@@ -231,15 +233,19 @@ export default async function DesignDetailPage({
 
               {/* Call to Actions */}
               <div className="space-y-3 pt-2">
-                <a
-                  href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-maroon hover:bg-maroon-hover text-ivory font-mono uppercase text-xs tracking-widest font-bold rounded shadow-lg transition-all hover:scale-[1.01]"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Enquire on WhatsApp About {design.designCode}</span>
-                </a>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-maroon hover:bg-maroon-hover text-ivory font-mono uppercase text-xs tracking-widest font-bold rounded shadow-lg transition-all hover:scale-[1.01]"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Enquire on WhatsApp About {design.designCode}</span>
+                  </a>
+
+                  <HeartButton designCode={design.designCode} size="lg" />
+                </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <a

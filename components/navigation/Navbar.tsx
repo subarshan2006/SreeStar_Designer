@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { CategoryOverlay } from './CategoryOverlay'
 import { BookingModal } from './BookingModal'
-import { X, Sliders } from 'lucide-react'
+import { X, Sliders, Heart } from 'lucide-react'
+import { useWishlist } from '@/components/providers/WishlistProvider'
 
 export interface NavbarProps {
   activeCategory?: string
@@ -15,6 +16,7 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false)
   const [isBookingOpen, setIsBookingOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { count, openDrawer, isLoaded } = useWishlist()
 
   return (
     <>
@@ -84,8 +86,24 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Right: Book a Fitting + & Mobile Menu */}
+          {/* Right: Wishlist, Book a Fitting + & Mobile Menu */}
           <div className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
+            {/* Wishlist Header Trigger */}
+            <button
+              type="button"
+              onClick={openDrawer}
+              className="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none flex items-center justify-center"
+              aria-label={`Open Curated Wishlist (${count} saved)`}
+              title="Curated Wishlist"
+            >
+              <Heart className={`w-4 h-4 ${count > 0 ? 'fill-maroon text-maroon' : 'text-white'}`} />
+              {isLoaded && count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-maroon text-white text-[9px] font-mono font-bold flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </button>
+
             {/* Desktop & Tablet Book Button */}
             <button
               type="button"

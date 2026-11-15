@@ -95,8 +95,11 @@ export const metadata: Metadata = {
 }
 
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+import { WishlistProvider } from '@/components/providers/WishlistProvider'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { WishlistDrawer } from '@/components/ui/WishlistDrawer'
+import { MobileActionBar } from '@/components/ui/MobileActionBar'
 import { JsonLd, getLocalBusinessSchema } from '@/lib/schema'
 import { GoogleAnalytics } from '@/components/seo/GoogleAnalytics'
 
@@ -110,14 +113,18 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${playfair.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory">
+      <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory pb-16 md:pb-0">
         <GoogleAnalytics />
         <JsonLd schema={getLocalBusinessSchema()} />
-        <SmoothScrollProvider>
-          <CustomCursor />
-          {children}
-          <ScrollToTop />
-        </SmoothScrollProvider>
+        <WishlistProvider>
+          <SmoothScrollProvider>
+            <CustomCursor />
+            {children}
+            <ScrollToTop />
+            <WishlistDrawer />
+            <MobileActionBar />
+          </SmoothScrollProvider>
+        </WishlistProvider>
       </body>
     </html>
   )
