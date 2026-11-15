@@ -413,19 +413,19 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Serve AVIF → WebP → JPEG fallback chain
 
 ### Sprint 35 — Local SEO
-- [ ] **Google Business Profile** optimization guide:
+- [x] **Google Business Profile** optimization guide:
   - Claim and verify listing
   - Add all categories: "Tailor", "Women's Clothing Store", "Blouse Shop"
   - Upload 50+ photos to GBP
   - Add services: blouse stitching, kurti stitching, frock stitching, etc.
   - Collect and respond to reviews
   - Post weekly updates
-- [ ] Embed Google Maps on contact page with proper API key
-- [ ] NAP (Name, Address, Phone) consistency across all pages
-- [ ] Add city/area name to key headings: "Bridal Blouse Stitching in [CITY]"
-- [ ] Create location-specific landing pages if multiple areas served
-- [ ] Local citations: list on Justdial, Sulekha, IndiaMART, Google Maps, Yelp, Yellow Pages
-- [ ] Encourage Google reviews with post-delivery WhatsApp message template
+- [x] Embed Google Maps on contact page with proper API key
+- [x] NAP (Name, Address, Phone) consistency across all pages
+- [x] Add city/area name to key headings: "Bridal Blouse Stitching in [CITY]"
+- [x] Create location-specific landing pages if multiple areas served
+- [x] Local citations: list on Justdial, Sulekha, IndiaMART, Google Maps, Yelp, Yellow Pages
+- [x] Encourage Google reviews with post-delivery WhatsApp message template
 
 ### Sprint 36 — Content SEO (Blog Foundation)
 - [ ] Set up blog CMS schema in Sanity: `blogPost` (title, slug, body, featuredImage, category, tags, author, publishDate, seoMeta)
