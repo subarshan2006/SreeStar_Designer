@@ -296,39 +296,39 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] "Back to top" appears after scrolling past fold
 
 ### Sprint 27 — Bridal Spotlight & Footer Reveals
-- [ ] Refine Bridal Spotlight pinned section:
+- [x] Refine Bridal Spotlight pinned section:
   - Images transition with clip-path reveal (circle expand or horizontal wipe)
   - Text fades and slides in sync with image change
   - Scroll-controlled: each "page" of content maps to a scroll distance
-- [ ] Footer giant wordmark reveal:
+- [x] Footer giant wordmark reveal:
   - Wordmark slides up from below as footer enters viewport
   - Use `clip-path` or `translateY` with ScrollTrigger
   - Reveal completes as footer is fully in view
   - Subtle parallax on the wordmark itself
 
 ### Sprint 28 — Animation Performance Audit
-- [ ] Profile all animations using Chrome DevTools Performance tab
-- [ ] Ensure 60fps across all sections on mid-range devices
-- [ ] Identify and fix layout thrashing (no width/height animations)
-- [ ] Audit `will-change` usage (apply only when animating, remove after)
-- [ ] Lazy-initialize ScrollTriggers: only create when section is near viewport
-- [ ] Kill ScrollTriggers on route change to prevent memory leaks
-- [ ] Test on: iPhone 12 (Safari), Pixel 6 (Chrome), iPad (Safari), low-end Android
-- [ ] Create performance budget: JS bundle < 200KB gzipped, LCP < 2.5s
-- [ ] `prefers-reduced-motion` audit: every animation has a reduced/no-motion fallback
+- [x] Profile all animations using Chrome DevTools Performance tab
+- [x] Ensure 60fps across all sections on mid-range devices
+- [x] Identify and fix layout thrashing (no width/height animations)
+- [x] Audit `will-change` usage (apply only when animating, remove after)
+- [x] Lazy-initialize ScrollTriggers: only create when section is near viewport
+- [x] Kill ScrollTriggers on route change to prevent memory leaks
+- [x] Test on: iPhone 12 (Safari), Pixel 6 (Chrome), iPad (Safari), low-end Android
+- [x] Create performance budget: JS bundle < 200KB gzipped, LCP < 2.5s
+- [x] `prefers-reduced-motion` audit: every animation has a reduced/no-motion fallback
 
 ---
 
 ## 🔍 PHASE 4 — SEO ENGINE (Sprints 29–38)
 
 ### Sprint 29 — Technical SEO Foundation
-- [ ] Configure `next-sitemap` for automatic XML sitemap generation
-- [ ] Create `robots.txt` with proper allow/disallow rules
-- [ ] Set up canonical URLs for all pages
-- [ ] Implement `next/metadata` API for dynamic meta tags on every page
-- [ ] Configure `viewport`, `themeColor`, and `manifest.json`
-- [ ] Set `<html lang="en">` (or `lang="ta"` for Tamil content)
-- [ ] Create 404 and 500 error pages with navigation back to home
+- [x] Configure `next-sitemap` for automatic XML sitemap generation
+- [x] Create `robots.txt` with proper allow/disallow rules
+- [x] Set up canonical URLs for all pages
+- [x] Implement `next/metadata` API for dynamic meta tags on every page
+- [x] Configure `viewport`, `themeColor`, and `manifest.json`
+- [x] Set `<html lang="en">` (or `lang="ta"` for Tamil content)
+- [x] Create 404 and 500 error pages with navigation back to home
 
 ### Sprint 30 — Schema.org Structured Data
 - [ ] **LocalBusiness** schema on every page:

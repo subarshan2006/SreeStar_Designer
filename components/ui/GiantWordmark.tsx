@@ -36,10 +36,38 @@ export function GiantWordmark({
   ariaLabel,
 }: GiantWordmarkProps) {
   const accessibleName = ariaLabel || `${text} - ${tagline}`
+  const [footerRevealed, setFooterRevealed] = React.useState(false)
+  const footerRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (variant !== 'footer') return
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (mediaQuery.matches) {
+      setFooterRevealed(true)
+      return
+    }
+
+    const currentEl = footerRef.current
+    if (!currentEl) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setFooterRevealed(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(currentEl)
+    return () => observer.disconnect()
+  }, [variant])
 
   if (variant === 'footer') {
     return (
       <div
+        ref={footerRef}
         className={cn(
           'relative w-full overflow-hidden select-none pt-12 pb-6 border-t border-surface-border bg-ivory-dark/40',
           className
@@ -54,11 +82,14 @@ export function GiantWordmark({
             <span>{cityNote}</span>
           </div>
 
-          <div className="relative w-full text-center">
+          <div className="relative w-full text-center overflow-hidden">
             <h2
               className={cn(
-                'font-display font-black tracking-tighter text-charcoal leading-none transition-transform duration-700 select-none uppercase',
+                'font-display font-black tracking-tighter text-charcoal leading-none select-none uppercase transition-all duration-1000 ease-out',
                 'text-[15.5vw] sm:text-[15.8vw] md:text-[16vw] lg:text-[16.2vw]',
+                footerRevealed
+                  ? 'translate-y-0 opacity-100 [clip-path:inset(0%_0%_0%_0%)]'
+                  : 'translate-y-12 opacity-0 [clip-path:inset(20%_0%_0%_0%)]',
                 color
               )}
               style={{
