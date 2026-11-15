@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { X, Calendar, Clock, Scissors, CheckCircle, MessageSquare } from 'lucide-react'
+import { X, CheckCircle } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/constants'
 import { Button } from '@/components/ui/Button'
 import { Heading, Caption, Body } from '@/components/ui/typography'

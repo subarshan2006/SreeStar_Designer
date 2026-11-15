@@ -4,8 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { CategoryOverlay } from './CategoryOverlay'
 import { BookingModal } from './BookingModal'
-import { Menu, X, Sliders, Calendar } from 'lucide-react'
-import { SITE_CONFIG } from '@/lib/constants'
+import { X, Sliders } from 'lucide-react'
 
 export interface NavbarProps {
   activeCategory?: string

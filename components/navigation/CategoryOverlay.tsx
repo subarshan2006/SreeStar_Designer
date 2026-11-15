@@ -1,10 +1,9 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { X, ArrowRight, MessageCircle, Sparkles, Phone, MapPin } from 'lucide-react'
+import { X, ArrowRight, MessageCircle, Phone, MapPin } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/constants'
-import { Heading, Caption, Label } from '@/components/ui/typography'
+import { Heading, Caption } from '@/components/ui/typography'
 
 export interface CategoryOverlayProps {
   isOpen: boolean

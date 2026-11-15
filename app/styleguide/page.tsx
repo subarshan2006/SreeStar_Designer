@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Heading, Body, Caption, Label, DesignCodeBadge } from '@/components/ui/typography'
 import { Button } from '@/components/ui/Button'
 import { GiantWordmark } from '@/components/ui/GiantWordmark'
-import { ArrowLeft, Check, Sparkles, Copy, Eye, Layers } from 'lucide-react'
+import { ArrowLeft, Check, Sparkles, Copy, Layers } from 'lucide-react'
 
 export default function StyleguidePage() {
   const [copiedColor, setCopiedColor] = useState<string | null>(null)

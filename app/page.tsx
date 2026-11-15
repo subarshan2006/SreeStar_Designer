@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { Navbar } from '@/components/navigation/Navbar'
 import { GiantWordmark } from '@/components/ui/GiantWordmark'
 import { Button } from '@/components/ui/Button'
-import { Heading, Body, Caption, Label, DesignCodeBadge } from '@/components/ui/typography'
+import { Heading, Body, Caption } from '@/components/ui/typography'
 import { SITE_CONFIG } from '@/lib/constants'
-import { ArrowRight, Sparkles, CheckCircle2, Sliders, Scissors, Calendar, ShieldCheck, Layers } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Scissors, Calendar, ShieldCheck, Sparkles } from 'lucide-react'
 
 export default function HomePage() {
   return (

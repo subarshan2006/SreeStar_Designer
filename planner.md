@@ -79,31 +79,31 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Deploy Sanity Studio configuration (embeddable `/studio` route)
 
 ### Sprint 6 — Image Pipeline & Optimization System
-- [ ] Set up Cloudinary or Vercel image optimization
-- [ ] Build `<OptimizedImage>` component with: srcset, WebP/AVIF, lazy-load, blur-up placeholder (LQIP)
-- [ ] Store intrinsic `width` and `height` in CMS for zero layout shift
-- [ ] Create image size presets: thumbnail (200w), card (400w), medium (800w), large (1200w), full (1920w)
-- [ ] Build blur placeholder generation (base64 or blurhash)
-- [ ] Configure Next.js `next/image` with remote patterns for CMS
-- [ ] Test CLS (Cumulative Layout Shift) = 0 on all pages
+- [x] Set up Cloudinary or Vercel image optimization
+- [x] Build `<OptimizedImage>` component with: srcset, WebP/AVIF, lazy-load, blur-up placeholder (LQIP)
+- [x] Store intrinsic `width` and `height` in CMS for zero layout shift
+- [x] Create image size presets: thumbnail (200w), card (400w), medium (800w), large (1200w), full (1920w)
+- [x] Build blur placeholder generation (base64 or blurhash)
+- [x] Configure Next.js `next/image` with remote patterns for CMS
+- [x] Test CLS (Cumulative Layout Shift) = 0 on all pages
 
 ### Sprint 7 — Data Layer & API
-- [ ] Build Sanity client with GROQ queries
-- [ ] Create data-fetching functions: `getAllDesigns()`, `getDesignsByCategory()`, `getDesign(slug)`, `getFeaturedDesigns()`, `getTestimonials()`, `getFAQs()`, `getSiteSettings()`
-- [ ] Implement ISR (Incremental Static Regeneration) for design pages
-- [ ] Build search utility: search by design code, title, tags
-- [ ] Create category URL structure: `/collections/bridal-blouses`, `/collections/kurtis`, etc.
-- [ ] Set up Sanity webhook → Vercel revalidation for instant content updates
+- [x] Build Sanity client with GROQ queries
+- [x] Create data-fetching functions: `getAllDesigns()`, `getDesignsByCategory()`, `getDesign(slug)`, `getFeaturedDesigns()`, `getTestimonials()`, `getFAQs()`, `getSiteSettings()`
+- [x] Implement ISR (Incremental Static Regeneration) for design pages
+- [x] Build search utility: search by design code, title, tags
+- [x] Create category URL structure: `/collections/bridal-blouses`, `/collections/kurtis`, etc.
+- [x] Set up Sanity webhook → Vercel revalidation for instant content updates
 
 ### Sprint 8 — Placeholder Content & Asset Prep
-- [ ] Create 50 clearly labeled placeholder images (different aspect ratios, portrait & landscape)
-- [ ] Label each: "Bridal Blouse — D-0001", "Grand Frock — D-0025", etc.
-- [ ] Create 5 placeholder vertical video posters
-- [ ] Seed CMS with 50 placeholder designs across all categories
-- [ ] Add 5 placeholder testimonials
-- [ ] Add 8 FAQs with realistic content
-- [ ] Fill siteSettings with placeholder shop info
-- [ ] Create a content replacement checklist for the client
+- [x] Create 50 clearly labeled placeholder images (different aspect ratios, portrait & landscape)
+- [x] Label each: "Bridal Blouse — D-0001", "Grand Frock — D-0025", etc.
+- [x] Create 5 placeholder vertical video posters
+- [x] Seed CMS with 50 placeholder designs across all categories
+- [x] Add 5 placeholder testimonials
+- [x] Add 8 FAQs with realistic content
+- [x] Fill siteSettings with placeholder shop info
+- [x] Create a content replacement checklist for the client
 
 ---
 
