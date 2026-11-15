@@ -6,6 +6,7 @@ import { DesignRecord } from '@/lib/api'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { DesignCodeBadge, Caption, Heading } from '@/components/ui/typography'
 import { SITE_CONFIG } from '@/lib/constants'
+import { generateSeoAltText } from '@/lib/seo'
 import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider'
 import { ArrowRight, Eye, MessageCircle, Sparkles } from 'lucide-react'
 
@@ -234,72 +235,74 @@ export function ImageWall({
                           : 'opacity-0 translate-y-6 scale-[0.97] [clip-path:inset(10%_0%_0%_0%)]'
                       }`}
                     >
-                      {/* Image Container with Zero Layout Shift */}
-                      <div className="relative overflow-hidden">
-                        <OptimizedImage
-                          src={design.imageUrl}
-                          alt={`${design.title} — ${design.designCode}`}
-                          width={design.width}
-                          height={design.height}
-                          aspectRatio={design.aspectRatio}
-                          className="group-hover:scale-[1.035] transition-transform duration-700 ease-out"
-                        />
+                      {/* Semantic Figure & Image Container with Zero Layout Shift */}
+                      <figure className="relative flex flex-col m-0">
+                        <div className="relative overflow-hidden">
+                          <OptimizedImage
+                            src={design.imageUrl}
+                            alt={generateSeoAltText(design)}
+                            width={design.width}
+                            height={design.height}
+                            aspectRatio={design.aspectRatio}
+                            className="group-hover:scale-[1.035] transition-transform duration-700 ease-out"
+                          />
 
-                        {/* Top Badges */}
-                        <div className="absolute top-2.5 left-2.5 z-20 transition-opacity duration-300">
-                          <DesignCodeBadge code={design.designCode} />
+                          {/* Top Badges */}
+                          <div className="absolute top-2.5 left-2.5 z-20 transition-opacity duration-300">
+                            <DesignCodeBadge code={design.designCode} />
+                          </div>
+
+                          {design.isNew && (
+                            <div className="absolute top-2.5 right-2.5 z-20">
+                              <span className="font-mono text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5 bg-maroon text-white rounded">
+                                New
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Hover Overlay Action Bar */}
+                          <div className="absolute inset-0 bg-charcoal/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center gap-2">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                if (onSelectDesign) onSelectDesign(design)
+                              }}
+                              className="p-2.5 bg-white text-charcoal rounded-full shadow-lg hover:bg-gold hover:text-white transition-all transform -translate-y-1 group-hover:translate-y-0"
+                              aria-label="Quick View Design"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+
+                            <a
+                              href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="p-2.5 bg-maroon text-white rounded-full shadow-lg hover:bg-maroon-hover transition-all transform translate-y-1 group-hover:translate-y-0"
+                              aria-label="Enquire on WhatsApp"
+                            >
+                              <MessageCircle className="w-4 h-4" />
+                            </a>
+                          </div>
                         </div>
 
-                        {design.isNew && (
-                          <div className="absolute top-2.5 right-2.5 z-20">
-                            <span className="font-mono text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5 bg-maroon text-white rounded">
-                              New
+                        {/* Semantic Figcaption beneath each image */}
+                        <figcaption className="p-3 sm:p-3.5 bg-surface-card flex flex-col justify-between space-y-1.5 border-t border-surface-border/40">
+                          <div className="flex items-start justify-between gap-1">
+                            <h4 className="font-serif text-xs sm:text-sm font-semibold text-charcoal group-hover:text-maroon transition-colors line-clamp-1">
+                              {design.title}
+                            </h4>
+                          </div>
+
+                          <div className="flex items-center justify-between text-[10px] font-mono text-charcoal-muted">
+                            <span className="uppercase tracking-wider">{design.categoryName}</span>
+                            <span className="text-maroon font-semibold group-hover:underline">
+                              Enquire →
                             </span>
                           </div>
-                        )}
-
-                        {/* Hover Overlay Action Bar */}
-                        <div className="absolute inset-0 bg-charcoal/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center gap-2">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              if (onSelectDesign) onSelectDesign(design)
-                            }}
-                            className="p-2.5 bg-white text-charcoal rounded-full shadow-lg hover:bg-gold hover:text-white transition-all transform -translate-y-1 group-hover:translate-y-0"
-                            aria-label="Quick View Design"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
-
-                          <a
-                            href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="p-2.5 bg-maroon text-white rounded-full shadow-lg hover:bg-maroon-hover transition-all transform translate-y-1 group-hover:translate-y-0"
-                            aria-label="Enquire on WhatsApp"
-                          >
-                            <MessageCircle className="w-4 h-4" />
-                          </a>
-                        </div>
-                      </div>
-
-                      {/* Caption beneath each image */}
-                      <div className="p-3 sm:p-3.5 bg-surface-card flex flex-col justify-between space-y-1.5 border-t border-surface-border/40">
-                        <div className="flex items-start justify-between gap-1">
-                          <h4 className="font-serif text-xs sm:text-sm font-semibold text-charcoal group-hover:text-maroon transition-colors line-clamp-1">
-                            {design.title}
-                          </h4>
-                        </div>
-
-                        <div className="flex items-center justify-between text-[10px] font-mono text-charcoal-muted">
-                          <span className="uppercase tracking-wider">{design.categoryName}</span>
-                          <span className="text-maroon font-semibold group-hover:underline">
-                            Enquire →
-                          </span>
-                        </div>
-                      </div>
+                        </figcaption>
+                      </figure>
                     </article>
                   )
                 })}

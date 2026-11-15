@@ -403,14 +403,14 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Pinterest: add `<meta name="pinterest" content="nopin">` selectively or enable rich pins
 
 ### Sprint 34 — Image SEO
-- [ ] Descriptive file names: `bridal-maggam-blouse-gold-zardosi-D0045.webp` (not `IMG_2847.jpg`)
-- [ ] Build a CMS image rename pipeline: auto-generate SEO-friendly filenames from design title + code
-- [ ] Alt text on every image: descriptive, keyword-rich, unique
-- [ ] `<figcaption>` on gallery images
-- [ ] Image sitemap: add `<image:image>` entries to XML sitemap
-- [ ] Implement structured data `ImageObject` for key images
-- [ ] Optimize image file sizes: target < 100KB for cards, < 300KB for hero
-- [ ] Serve AVIF → WebP → JPEG fallback chain
+- [x] Descriptive file names: `bridal-maggam-blouse-gold-zardosi-D0045.webp` (not `IMG_2847.jpg`)
+- [x] Build a CMS image rename pipeline: auto-generate SEO-friendly filenames from design title + code
+- [x] Alt text on every image: descriptive, keyword-rich, unique
+- [x] `<figcaption>` on gallery images
+- [x] Image sitemap: add `<image:image>` entries to XML sitemap
+- [x] Implement structured data `ImageObject` for key images
+- [x] Optimize image file sizes: target < 100KB for cards, < 300KB for hero
+- [x] Serve AVIF → WebP → JPEG fallback chain
 
 ### Sprint 35 — Local SEO
 - [ ] **Google Business Profile** optimization guide:
