@@ -523,16 +523,16 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Tracking: GA4 event `wishlist_add`, `wishlist_share`
 
 ### Sprint 42 — Collections Page (Full Gallery)
-- [ ] Full edge-to-edge staggered image wall with ALL designs
-- [ ] Filter via "+" panel: category filters with animated transitions
-- [ ] Filtering animation: images fade/slide out, new ones fade/slide in (GSAP Flip)
-- [ ] Infinite scroll or "Load More" button (paginated API calls)
-- [ ] Search by design code or keyword
-- [ ] URL updates with filters: `/collections?category=bridal-blouses&sort=new`
-- [ ] Each category has its own URL: `/collections/bridal-blouses`
-- [ ] Sort: New First, Trending, All
-- [ ] Show design count: "Showing 48 of 500+ designs"
-- [ ] Skeleton loading states for new batches
+- [x] Full edge-to-edge staggered image wall with ALL designs
+- [x] Filter via "+" panel: category filters with animated transitions
+- [x] Filtering animation: images fade/slide out, new ones fade/slide in (GSAP Flip)
+- [x] Infinite scroll or "Load More" button (paginated API calls)
+- [x] Search by design code or keyword
+- [x] URL updates with filters: `/collections?category=bridal-blouses&sort=new`
+- [x] Each category has its own URL: `/collections/bridal-blouses`
+- [x] Sort: New First, Trending, All
+- [x] Show design count: "Showing 48 of 500+ designs"
+- [x] Skeleton loading states for new batches
 
 ### Sprint 43 — About Page
 - [ ] Shop story section with founder/tailor portrait
