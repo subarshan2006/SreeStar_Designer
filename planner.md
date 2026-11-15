@@ -264,20 +264,20 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Mobile: reduce pin distance, larger words
 
 ### Sprint 24 — Page Transitions
-- [ ] Implement smooth page transitions between routes
-- [ ] Transition type: crossfade with subtle slide, or clip-path wipe
-- [ ] Use Next.js App Router `template.tsx` or `framer-motion` `AnimatePresence`
-- [ ] Ensure scroll position resets on new page
-- [ ] Maintain transition during client-side navigation
-- [ ] Loading state: subtle progress bar or fade
-- [ ] Fallback for no-JS: instant navigation
+- [x] Implement smooth page transitions between routes
+- [x] Transition type: crossfade with subtle slide, or clip-path wipe
+- [x] Use Next.js App Router `template.tsx` or `framer-motion` `AnimatePresence`
+- [x] Ensure scroll position resets on new page
+- [x] Maintain transition during client-side navigation
+- [x] Loading state: subtle progress bar or fade
+- [x] Fallback for no-JS: instant navigation
 
 ### Sprint 25 — Magnetic Buttons & Custom Cursor
-- [ ] **Magnetic buttons**: CTA buttons subtly attract toward the cursor when nearby
+- [x] **Magnetic buttons**: CTA buttons subtly attract toward the cursor when nearby
   - Use GSAP `quickTo()` for smooth magnetic pull
   - Apply to: "Book a Fitting", "WhatsApp", primary CTAs
   - Subtle effect (max 8–10px pull), not jarring
-- [ ] **Custom cursor** (desktop only):
+- [x] **Custom cursor** (desktop only):
   - Default: small dot or crosshair
   - On interactive elements: grows, changes color
   - On images: shows "View" or "+" icon
@@ -286,14 +286,14 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
   - Accessible: don't hide the native cursor for keyboard users
 
 ### Sprint 26 — Micro-Animations & Polish
-- [ ] Button hover states: subtle scale, color shift, underline slide
-- [ ] Link hover: underline draws from left to right
-- [ ] Nav items: letter-spacing expansion on hover
-- [ ] Card hover: subtle shadow lift
-- [ ] Form field focus: border color transition, label float animation
-- [ ] Loading skeleton animations for images (shimmer effect)
-- [ ] Scroll-to-top button with smooth appearance
-- [ ] "Back to top" appears after scrolling past fold
+- [x] Button hover states: subtle scale, color shift, underline slide
+- [x] Link hover: underline draws from left to right
+- [x] Nav items: letter-spacing expansion on hover
+- [x] Card hover: subtle shadow lift
+- [x] Form field focus: border color transition, label float animation
+- [x] Loading skeleton animations for images (shimmer effect)
+- [x] Scroll-to-top button with smooth appearance
+- [x] "Back to top" appears after scrolling past fold
 
 ### Sprint 27 — Bridal Spotlight & Footer Reveals
 - [ ] Refine Bridal Spotlight pinned section:

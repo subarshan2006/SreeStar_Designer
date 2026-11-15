@@ -53,3 +53,36 @@
 .blend-difference {
   mix-blend-mode: difference;
 }
+
+/* Luxury animated drawing underline on hover */
+.underline-draw {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: #721B29;
+  transform-origin: bottom right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.underline-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Subtle letter-spacing expansion on hover */
+.hover-expand {
+  transition: letter-spacing 0.3s ease;
+}
+
+.hover-expand:hover {
+  letter-spacing: 0.15em;
+}

@@ -61,6 +61,8 @@ export const metadata: Metadata = {
 }
 
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+import { CustomCursor } from '@/components/ui/CustomCursor'
+import { ScrollToTop } from '@/components/ui/ScrollToTop'
 
 export default function RootLayout({
   children,
@@ -73,7 +75,11 @@ export default function RootLayout({
       className={`${cinzel.variable} ${playfair.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory">
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <CustomCursor />
+          {children}
+          <ScrollToTop />
+        </SmoothScrollProvider>
       </body>
     </html>
   )
