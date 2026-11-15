@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Navbar } from '@/components/navigation/Navbar'
 import { Heading, Body, Caption } from '@/components/ui/typography'
 import { SITE_CONFIG } from '@/lib/constants'
 import { JsonLd, getLocalBusinessSchema, getBreadcrumbSchema } from '@/lib/schema'
+import { BookingForm } from '@/components/booking/BookingForm'
 import {
   ArrowLeft,
   MapPin,
@@ -13,42 +14,44 @@ import {
   Clock,
   MessageCircle,
   Calendar,
-  CheckCircle2,
   ShieldCheck,
-  Send,
   Navigation,
+  Instagram,
+  ExternalLink,
+  Sparkles,
 } from 'lucide-react'
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    garmentType: 'Bridal Maggam Blouse',
-    preferredDate: '',
-    designCode: '',
-    notes: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-
-    const text = `Hi ${SITE_CONFIG.shopName}! I would like to book a tailoring fitting appointment:
-• Name: ${formData.name}
-• Phone: ${formData.phone}
-• Garment: ${formData.garmentType}
-• Preferred Date: ${formData.preferredDate || 'Earliest Available'}
-• Design Code: ${formData.designCode || 'To discuss in studio'}
-• Notes: ${formData.notes || 'None'}`
-
-    const waUrl = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`
-    window.open(waUrl, '_blank')
-  }
-
   const breadcrumbs = [
     { name: 'Home', url: '/' },
     { name: 'Contact & Atelier', url: '/contact' },
+  ]
+
+  const instagramPosts = [
+    {
+      id: 'ig-1',
+      title: 'Peacock Maggam Zardosi Hand Needlework in Progress',
+      code: 'D-0001',
+      views: '14.2K',
+    },
+    {
+      id: 'ig-2',
+      title: 'Flawless Skeleton Fitting Trial for Muhurtham Bride',
+      code: 'D-0045',
+      views: '28.5K',
+    },
+    {
+      id: 'ig-3',
+      title: 'Authentic 90s Vintage High-Volume Puffed Sleeve Tutorial',
+      code: 'D-0010',
+      views: '42.1K',
+    },
+    {
+      id: 'ig-4',
+      title: 'Can-Can Pleating Craftsmanship for Grand Party Frocks',
+      code: 'D-0021',
+      views: '19.8K',
+    },
   ]
 
   return (
@@ -76,10 +79,18 @@ export default function ContactPage() {
 
         {/* Page Header with Single Strict H1 */}
         <div className="max-w-4xl mb-12 space-y-3">
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-maroon" />
-            <Caption>Chennai Flagship Studio • Strictly Women Only</Caption>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="flex items-center gap-1.5 text-maroon text-xs font-mono uppercase tracking-wider font-bold">
+              <MapPin className="w-4 h-4" />
+              <span>Chennai Flagship Studio</span>
+            </div>
+            <span className="text-surface-border">•</span>
+            <span className="px-3 py-1 bg-amber-50 text-amber-900 border border-amber-200/80 rounded-full font-mono text-[11px] font-semibold flex items-center gap-1">
+              <Clock className="w-3 h-3 text-amber-700" />
+              <span>We reply within 2 hours</span>
+            </span>
           </div>
+
           <Heading level={1} variant="serif" italic className="text-4xl sm:text-6xl text-charcoal">
             Visit Our Atelier or Reserve a Fitting
           </Heading>
@@ -90,149 +101,22 @@ export default function ContactPage() {
 
         {/* Two-Column Grid: Form & Studio Location */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
-          {/* Left Column: Interactive Booking Form */}
-          <div className="lg:col-span-6 bg-surface-card p-6 sm:p-8 rounded-sm border border-surface-border shadow-sm">
-            <div className="mb-6 pb-4 border-b border-surface-border">
+          {/* Left Column: Full Lead Capture & Booking Form */}
+          <div className="lg:col-span-6 space-y-4">
+            <div className="flex items-center justify-between pb-2 border-b border-surface-border">
               <div className="flex items-center gap-2 text-maroon text-xs font-mono uppercase tracking-wider font-bold">
                 <Calendar className="w-4 h-4" />
                 <span>Fitting Appointment Reservation</span>
               </div>
-              <h2 className="font-serif text-2xl font-semibold text-charcoal mt-1">
-                Schedule Your Measurement Session
-              </h2>
-              <p className="text-xs text-charcoal-muted font-sans mt-1">
-                Submitting confirms your preferred slot directly with our WhatsApp concierge.
-              </p>
+              <span className="text-xs font-mono text-emerald-700 font-semibold">
+                Online Slots Open
+              </span>
             </div>
 
-            {submitted ? (
-              <div className="p-6 bg-maroon-light rounded border border-maroon/30 text-center space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-maroon mx-auto" />
-                <h3 className="font-serif text-xl font-bold text-charcoal">
-                  Appointment Request Initiated!
-                </h3>
-                <p className="text-xs text-charcoal-muted max-w-sm mx-auto">
-                  WhatsApp has opened with your reservation details. Our master fitter will confirm your exact slot within 2 hours.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setSubmitted(false)}
-                  className="font-mono text-xs uppercase text-maroon font-bold underline"
-                >
-                  Book another appointment
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 text-xs font-mono">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-charcoal-muted uppercase tracking-wider mb-1">
-                      Your Full Name *
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Dr. Ramya Soundararajan"
-                      className="w-full px-3.5 py-2.5 bg-ivory rounded border border-surface-border focus:border-maroon focus:outline-none text-charcoal"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-charcoal-muted uppercase tracking-wider mb-1">
-                      WhatsApp Phone *
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2.5 bg-ivory rounded border border-surface-border focus:border-maroon focus:outline-none text-charcoal"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="garmentType" className="block text-charcoal-muted uppercase tracking-wider mb-1">
-                      Garment Silhouette *
-                    </label>
-                    <select
-                      id="garmentType"
-                      value={formData.garmentType}
-                      onChange={(e) => setFormData({ ...formData, garmentType: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-ivory rounded border border-surface-border focus:border-maroon focus:outline-none text-charcoal"
-                    >
-                      <option value="Bridal Maggam Blouse">Bridal Maggam Blouse</option>
-                      <option value="Grand Wedding Blouse">Grand Heavy Work Blouse</option>
-                      <option value="Designer Party Blouse">Designer / Party Blouse</option>
-                      <option value="Daily Wear Blouse">Daily Wear Comfort Cut</option>
-                      <option value="Grand Frock">Grand Party Frock</option>
-                      <option value="Bespoke Kurti">Bespoke Kurti</option>
-                      <option value="Custom Churidar">Custom Churidar</option>
-                      <option value="90s Retro Collection">90s Retro Vintage Blouse</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="preferredDate" className="block text-charcoal-muted uppercase tracking-wider mb-1">
-                      Preferred Date
-                    </label>
-                    <input
-                      id="preferredDate"
-                      type="date"
-                      value={formData.preferredDate}
-                      onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-ivory rounded border border-surface-border focus:border-maroon focus:outline-none text-charcoal"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="designCode" className="block text-charcoal-muted uppercase tracking-wider mb-1">
-                    Design Reference Code (Optional)
-                  </label>
-                  <input
-                    id="designCode"
-                    type="text"
-                    value={formData.designCode}
-                    onChange={(e) => setFormData({ ...formData, designCode: e.target.value })}
-                    placeholder="e.g. D-0045, D-0104, or photo reference"
-                    className="w-full px-3.5 py-2.5 bg-ivory rounded border border-surface-border focus:border-maroon focus:outline-none text-charcoal"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="notes" className="block text-charcoal-muted uppercase tracking-wider mb-1">
-                    Custom Requests / Neckline Ideas
-                  </label>
-                  <textarea
-                    id="notes"
-                    rows={3}
-                    value={formData.notes}
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    placeholder="Tell us about your saree color, occasion date, or specific neckline requirements..."
-                    className="w-full px-3.5 py-2.5 bg-ivory rounded border border-surface-border focus:border-maroon focus:outline-none text-charcoal resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-maroon hover:bg-maroon-hover text-ivory font-mono uppercase text-xs tracking-widest font-bold rounded shadow-md transition-all hover:scale-[1.01]"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Submit & Open WhatsApp Concierge</span>
-                </button>
-
-                <p className="text-[11px] text-charcoal-subtle text-center pt-1">
-                  Urgent emergency wedding order? Ask for our <strong>48-Hour Rush Service</strong>.
-                </p>
-              </form>
-            )}
+            <BookingForm
+              initialGarmentType="Bridal Maggam Blouse"
+              className="shadow-sm"
+            />
           </div>
 
           {/* Right Column: Google Maps & Atelier Details */}
@@ -249,28 +133,32 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="p-5 flex items-center justify-between bg-charcoal text-ivory text-xs font-mono">
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-charcoal text-ivory text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <Navigation className="w-4 h-4 text-gold" />
+                  <Navigation className="w-4 h-4 text-gold shrink-0" />
                   <span>Located in Prime T. Nagar Tailoring Hub</span>
                 </div>
                 <a
-                  href={SITE_CONFIG.googleMapsLink}
+                  href={`https://maps.google.com/?daddr=${encodeURIComponent(SITE_CONFIG.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gold hover:underline font-bold"
+                  className="text-gold hover:underline font-bold inline-flex items-center gap-1"
                 >
-                  Open in Google Maps →
+                  <span>Get Directions</span>
+                  <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
 
             {/* Studio Hours & NAP Consistency */}
             <div className="bg-surface-card p-6 rounded-sm border border-surface-border space-y-4 text-xs font-mono">
-              <div className="border-b border-surface-border pb-3">
-                <h3 className="font-serif text-lg font-semibold text-charcoal">
+              <div className="border-b border-surface-border pb-3 flex items-center justify-between">
+                <h2 className="font-serif text-lg font-semibold text-charcoal">
                   Official Atelier Information (NAP)
-                </h3>
+                </h2>
+                <span className="text-[10px] text-maroon font-bold uppercase">
+                  Verified Local Atelier
+                </span>
               </div>
 
               <div className="space-y-3">
@@ -295,7 +183,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-2.5">
                   <Clock className="w-4 h-4 text-maroon shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-charcoal block">Working Hours</span>
+                    <span className="font-bold text-charcoal block">Studio Working Hours</span>
                     <span className="text-charcoal-muted block">{SITE_CONFIG.workingHours}</span>
                   </div>
                 </div>
@@ -315,15 +203,15 @@ export default function ContactPage() {
                   href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=Hi%20${encodeURIComponent(SITE_CONFIG.shopName)}!%20I%20am%20outside%20the%20studio%20and%20need%20directions.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 p-3 bg-maroon text-ivory rounded font-bold uppercase tracking-wider text-[11px] hover:bg-maroon-hover transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 p-3.5 bg-maroon text-ivory rounded font-bold uppercase tracking-wider text-[11px] hover:bg-maroon-hover transition-colors shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>WhatsApp</span>
+                  <span>WhatsApp Atelier</span>
                 </a>
 
                 <a
                   href={`tel:${SITE_CONFIG.phone}`}
-                  className="inline-flex items-center justify-center gap-1.5 p-3 bg-surface text-charcoal border border-surface-border rounded font-bold uppercase tracking-wider text-[11px] hover:bg-ivory transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 p-3.5 bg-surface text-charcoal border border-surface-border rounded font-bold uppercase tracking-wider text-[11px] hover:bg-ivory transition-colors shadow-sm"
                 >
                   <Phone className="w-4 h-4 text-maroon" />
                   <span>Call Direct</span>
@@ -333,13 +221,69 @@ export default function ContactPage() {
           </div>
         </div>
 
+        {/* Instagram Reels & Visual Social Feed Section */}
+        <section aria-label="Instagram Atelier Feed" className="mb-16 bg-surface-card p-6 sm:p-8 rounded-sm border border-surface-border">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-surface-border">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-maroon text-xs font-mono uppercase tracking-wider font-bold">
+                <Instagram className="w-4 h-4" />
+                <span>@{SITE_CONFIG.instagram}</span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">
+                Behind the Scenes on Instagram
+              </h2>
+            </div>
+
+            <a
+              href={`https://instagram.com/${SITE_CONFIG.instagram}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-charcoal text-ivory rounded font-mono text-xs uppercase tracking-wider font-bold hover:bg-maroon transition-colors"
+            >
+              <Instagram className="w-3.5 h-3.5" />
+              <span>Follow @{SITE_CONFIG.instagram}</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {instagramPosts.map((post) => (
+              <a
+                key={post.id}
+                href={`https://instagram.com/${SITE_CONFIG.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-4 bg-ivory rounded border border-surface-border/70 hover:border-maroon transition-all flex flex-col justify-between space-y-3"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[10px] font-mono">
+                    <span className="font-bold text-maroon">{post.code}</span>
+                    <span className="text-charcoal-subtle">{post.views} Views</span>
+                  </div>
+                  <p className="text-xs font-serif font-semibold text-charcoal group-hover:text-maroon transition-colors line-clamp-2">
+                    {post.title}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-surface-border/50 flex items-center justify-between text-[10px] font-mono text-charcoal-muted">
+                  <span>Watch Reel</span>
+                  <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 transition-transform text-maroon" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* Doorstep Measurements Across Chennai */}
-        <div className="bg-surface-card p-6 sm:p-8 rounded-sm border border-surface-border">
+        <section aria-label="Doorstep Measurements Across Chennai" className="bg-surface-card p-6 sm:p-8 rounded-sm border border-surface-border">
           <div className="max-w-3xl space-y-3">
-            <Caption>Convenience & Comfort</Caption>
-            <h3 className="font-serif text-2xl font-semibold text-charcoal">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-gold" />
+              <Caption>At-Home Convenience</Caption>
+            </div>
+            <h2 className="font-serif text-2xl font-semibold text-charcoal">
               Doorstep Bridal Measurements Across Chennai
-            </h3>
+            </h2>
             <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed font-sans">
               Planning a wedding or family celebration with 3 or more blouses? Avoid Chennai traffic—our Senior Master Fitter travels directly to your residence across <strong>T. Nagar, Anna Nagar, Mylapore, Adyar, Velachery, and Nungambakkam</strong> with measurement tapes, neck cut charts, and embroidery swatch folders.
             </p>
@@ -354,7 +298,7 @@ export default function ContactPage() {
               </a>
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   )

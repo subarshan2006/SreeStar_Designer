@@ -92,7 +92,10 @@ export function CustomCursor() {
   const isView = cursorType === 'view'
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden select-none">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden select-none"
+    >
       {/* Center Precision Dot */}
       <div
         className="fixed w-2 h-2 rounded-full bg-charcoal mix-blend-difference transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2"

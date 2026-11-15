@@ -22,11 +22,40 @@
     background-color: #FAF9F5;
     color: #141413;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent iOS Safari 16px auto-zoom on form inputs */
+  @media screen and (max-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
   }
 
   ::selection {
     background-color: #721B29;
     color: #FAF9F5;
+  }
+}
+
+/* Accessible focus ring for WCAG 2.1 AA compliance */
+:focus-visible {
+  outline: 2px solid #721B29;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Disable or simplify animations when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

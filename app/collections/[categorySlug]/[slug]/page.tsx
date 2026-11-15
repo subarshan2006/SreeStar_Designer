@@ -5,21 +5,20 @@ import { notFound } from 'next/navigation'
 import { Navbar } from '@/components/navigation/Navbar'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { Heading, Body, Caption, DesignCodeBadge } from '@/components/ui/typography'
-import { HeartButton } from '@/components/ui/HeartButton'
+import { DesignDetailInteractive } from '@/components/collections/DesignDetailInteractive'
 import { getDesignBySlug, getDesignsByCategory, getAllDesigns } from '@/lib/api'
 import { SITE_CONFIG } from '@/lib/constants'
 import { generateDesignMetadata, generateSeoAltText } from '@/lib/seo'
 import { JsonLd, getProductSchema, getBreadcrumbSchema, getImageObjectSchema } from '@/lib/schema'
 import {
   ArrowLeft,
-  MessageCircle,
-  Phone,
   ShieldCheck,
   Clock,
   Sparkles,
   Scissors,
   CheckCircle2,
-  Calendar,
+  Ruler,
+  Award,
 } from 'lucide-react'
 
 export const revalidate = 60
@@ -62,9 +61,10 @@ export default async function DesignDetailPage({
   }
 
   const categoryDesigns = await getDesignsByCategory(categorySlug)
+  // Show 6 related designs for richer internal linking & discovery
   const relatedDesigns = categoryDesigns
     .filter((d) => d.id !== design.id)
-    .slice(0, 4)
+    .slice(0, 6)
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -72,8 +72,6 @@ export default async function DesignDetailPage({
     { name: design.categoryName, url: `/collections/${categorySlug}` },
     { name: design.designCode, url: `/collections/${categorySlug}/${design.slug}` },
   ]
-
-  const waText = `Hi ${SITE_CONFIG.shopName}! I would like to stitch design code *${design.designCode}* (${design.title}). Can I know fitting appointment availability, fabric options, and price estimation?`
 
   return (
     <div className="min-h-screen bg-ivory text-charcoal flex flex-col justify-between selection:bg-maroon selection:text-ivory">
@@ -111,39 +109,13 @@ export default async function DesignDetailPage({
 
         {/* Master Showcase Layout: 2 Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 mb-20">
-          {/* Left Column: Ultra High-Res Garment Visual */}
+          {/* Left Column: Interactive Multi-Angle Gallery Viewer */}
           <div className="lg:col-span-6 xl:col-span-7">
-            <div className="relative sticky top-28 bg-surface-card rounded-sm overflow-hidden border border-surface-border shadow-xl">
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
-                <OptimizedImage
-                  src={design.imageUrl}
-                  alt={generateSeoAltText(design)}
-                  width={design.width}
-                  height={design.height}
-                  aspectRatio={design.aspectRatio}
-                  className="w-full h-full object-cover"
-                />
-
-                {/* Overlaid Badges */}
-                <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-                  <DesignCodeBadge code={design.designCode} />
-                  <span className="font-mono text-[11px] uppercase font-bold tracking-widest px-2.5 py-1 bg-charcoal/90 text-ivory rounded backdrop-blur border border-white/10">
-                    {design.categoryName}
-                  </span>
-                </div>
-
-                <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-                  {design.isNew && (
-                    <span className="font-mono text-xs uppercase font-bold tracking-widest px-3 py-1 bg-maroon text-white rounded shadow-md">
-                      Fresh Creation
-                    </span>
-                  )}
-                  <HeartButton designCode={design.designCode} size="md" />
-                </div>
-              </div>
+            <div className="sticky top-28">
+              <DesignDetailInteractive design={design} categorySlug={categorySlug} />
 
               {/* Garment Caption Footnote */}
-              <div className="p-4 bg-charcoal text-ivory flex items-center justify-between text-xs font-mono">
+              <div className="mt-3 p-3 bg-charcoal text-ivory flex items-center justify-between text-xs font-mono rounded-sm">
                 <span className="flex items-center gap-1.5 text-gold">
                   <Scissors className="w-3.5 h-3.5" />
                   <span>Individually Hand-Cut • Zero Mass Production</span>
@@ -153,7 +125,7 @@ export default async function DesignDetailPage({
             </div>
           </div>
 
-          {/* Right Column: Garment Specifications & Booking Engine */}
+          {/* Right Column: Garment Specifications & Bespoke Tailoring Details */}
           <div className="lg:col-span-6 xl:col-span-5 flex flex-col justify-between space-y-8">
             <div className="space-y-6">
               {/* Garment Title & Status */}
@@ -165,12 +137,18 @@ export default async function DesignDetailPage({
                 <Heading level={1} variant="serif" italic className="text-3xl sm:text-4xl lg:text-5xl text-charcoal">
                   {design.title}
                 </Heading>
-                <p className="font-mono text-xs uppercase tracking-widest text-maroon font-bold mt-2">
-                  Workmanship: {design.workType || 'Artisanal Needlework'}
-                </p>
+                <div className="flex items-center gap-3 mt-2 flex-wrap">
+                  <span className="font-mono text-xs uppercase tracking-widest text-maroon font-bold">
+                    Workmanship: {design.workType || 'Artisanal Needlework'}
+                  </span>
+                  <span className="text-surface-border">•</span>
+                  <span className="font-mono text-xs text-charcoal-muted uppercase tracking-wider">
+                    Category: {design.categoryName}
+                  </span>
+                </div>
               </div>
 
-              {/* Description */}
+              {/* Garment Editorial Description */}
               <Body size="md" tone="muted" className="leading-relaxed">
                 {design.description}
               </Body>
@@ -183,7 +161,7 @@ export default async function DesignDetailPage({
                       Recommended Fabrics
                     </span>
                     <span className="font-semibold text-charcoal text-xs mt-0.5 block">
-                      {design.fabricOptions?.join(', ') || 'Pure Raw Silk, Banarasi, Velvet'}
+                      {design.fabricOptions?.join(', ') || 'Pure Raw Silk, Banarasi, Velvet, Brocade'}
                     </span>
                   </div>
                   <div>
@@ -204,7 +182,7 @@ export default async function DesignDetailPage({
                   </div>
                   <div>
                     <span className="text-charcoal-muted uppercase tracking-wider block text-[10px]">
-                      Emergency Service
+                      Emergency Rush Service
                     </span>
                     <span className="font-semibold text-maroon text-xs mt-0.5 block">
                       48-Hour Rush Available
@@ -213,71 +191,53 @@ export default async function DesignDetailPage({
                 </div>
               </div>
 
-              {/* Tailoring Guarantee Badges */}
-              <div className="grid grid-cols-2 gap-3 bg-surface-card p-4 rounded border border-surface-border text-xs">
-                <div className="flex items-start gap-2">
+              {/* Bespoke Tailoring Highlights */}
+              <div className="grid grid-cols-2 gap-3 bg-surface-card p-4 rounded-sm border border-surface-border text-xs">
+                <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-maroon shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-charcoal block">100% Fit Guarantee</span>
                     <span className="text-charcoal-muted text-[11px]">Free lifetime adjustment</span>
                   </div>
                 </div>
-                <div className="flex items-start gap-2">
+                <div className="flex items-start gap-2.5">
                   <ShieldCheck className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold text-charcoal block">Women Only</span>
                     <span className="text-charcoal-muted text-[11px]">Exclusively bespoke atelier</span>
                   </div>
                 </div>
-              </div>
-
-              {/* Call to Actions */}
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3">
-                  <a
-                    href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-maroon hover:bg-maroon-hover text-ivory font-mono uppercase text-xs tracking-widest font-bold rounded shadow-lg transition-all hover:scale-[1.01]"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>Enquire on WhatsApp About {design.designCode}</span>
-                  </a>
-
-                  <HeartButton designCode={design.designCode} size="lg" />
+                <div className="flex items-start gap-2.5">
+                  <Ruler className="w-4 h-4 text-maroon shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-charcoal block">18-Point Measurements</span>
+                    <span className="text-charcoal-muted text-[11px]">Anatomically contoured fit</span>
+                  </div>
                 </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <a
-                    href={`tel:${SITE_CONFIG.phone}`}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-surface-card hover:bg-ivory border border-surface-border text-charcoal font-mono uppercase text-xs tracking-wider font-semibold rounded transition-colors"
-                  >
-                    <Phone className="w-3.5 h-3.5 text-maroon" />
-                    <span>Call Atelier</span>
-                  </a>
-
-                  <Link
-                    href="/#contact"
-                    className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-surface-card hover:bg-ivory border border-surface-border text-charcoal font-mono uppercase text-xs tracking-wider font-semibold rounded transition-colors"
-                  >
-                    <Calendar className="w-3.5 h-3.5 text-gold" />
-                    <span>Book Fitting</span>
-                  </Link>
+                <div className="flex items-start gap-2.5">
+                  <Award className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-charcoal block">14+ Years Heritage</span>
+                    <span className="text-charcoal-muted text-[11px]">Chennai master craftswomen</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Atelier Note */}
-              <div className="p-3.5 bg-ivory border border-surface-border rounded text-[11px] text-charcoal-muted flex items-start gap-2">
-                <Clock className="w-4 h-4 text-charcoal shrink-0 mt-0.5" />
-                <span>
-                  <strong>Walk-in measurements available:</strong> {SITE_CONFIG.address}. Open {SITE_CONFIG.workingHours}.
-                </span>
+              {/* Atelier Studio Timing & Address Note */}
+              <div className="p-4 bg-surface rounded border border-surface-border text-xs text-charcoal-muted space-y-1.5">
+                <div className="flex items-center gap-2 font-mono text-charcoal font-semibold">
+                  <Clock className="w-4 h-4 text-maroon" />
+                  <span>Atelier Consultations & Walk-In Measurements</span>
+                </div>
+                <p className="text-[11px] leading-relaxed">
+                  Bring your fabric to our studio at <strong>{SITE_CONFIG.address}</strong>. Open {SITE_CONFIG.workingHours}. No prior appointment strictly needed for initial fabric submission.
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Internal Linking Engine: Related Designs in Same Category */}
+        {/* Internal Linking Engine: Complementary Designs in Same Category */}
         {relatedDesigns.length > 0 && (
           <section aria-label="Related Bespoke Designs" className="border-t border-surface-border pt-12">
             <div className="flex items-center justify-between mb-8">
@@ -289,14 +249,14 @@ export default async function DesignDetailPage({
               </div>
               <Link
                 href={`/collections/${categorySlug}`}
-                className="text-xs font-mono uppercase tracking-widest text-maroon hover:underline hidden sm:inline-flex items-center gap-1"
+                className="text-xs font-mono uppercase tracking-widest text-maroon hover:underline hidden sm:inline-flex items-center gap-1 font-semibold"
               >
                 <span>View Full Category ({categoryDesigns.length})</span>
                 <Sparkles className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
               {relatedDesigns.map((rel) => {
                 const relUrl = `/collections/${categorySlug}/${rel.slug}`
 
@@ -320,7 +280,7 @@ export default async function DesignDetailPage({
                       </div>
                     </div>
 
-                    <div className="p-3.5 flex flex-col justify-between flex-1">
+                    <div className="p-3 flex flex-col justify-between flex-1">
                       <div>
                         <h3 className="font-serif text-sm font-semibold text-charcoal group-hover:text-maroon transition-colors line-clamp-1">
                           {rel.title}
@@ -332,7 +292,7 @@ export default async function DesignDetailPage({
 
                       <div className="pt-2 mt-2 border-t border-surface-border/60 flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-charcoal-subtle">
                         <span>{rel.fabricOptions?.[0] || 'Silk'}</span>
-                        <span className="text-maroon font-bold group-hover:underline">View Details →</span>
+                        <span className="text-maroon font-bold group-hover:underline">View →</span>
                       </div>
                     </div>
                   </Link>

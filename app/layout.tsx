@@ -100,8 +100,11 @@ import { CustomCursor } from '@/components/ui/CustomCursor'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { WishlistDrawer } from '@/components/ui/WishlistDrawer'
 import { MobileActionBar } from '@/components/ui/MobileActionBar'
+import { SkipToContent } from '@/components/ui/SkipToContent'
 import { JsonLd, getLocalBusinessSchema } from '@/lib/schema'
 import { GoogleAnalytics } from '@/components/seo/GoogleAnalytics'
+import { MetaPixel } from '@/components/analytics/MetaPixel'
+import { ScrollDepthTracker } from '@/components/analytics/ScrollDepthTracker'
 
 export default function RootLayout({
   children,
@@ -114,12 +117,15 @@ export default function RootLayout({
       className={`${cinzel.variable} ${playfair.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory pb-16 md:pb-0">
+        <SkipToContent />
         <GoogleAnalytics />
+        <MetaPixel />
+        <ScrollDepthTracker />
         <JsonLd schema={getLocalBusinessSchema()} />
         <WishlistProvider>
           <SmoothScrollProvider>
             <CustomCursor />
-            {children}
+            <div id="main-content">{children}</div>
             <ScrollToTop />
             <WishlistDrawer />
             <MobileActionBar />
