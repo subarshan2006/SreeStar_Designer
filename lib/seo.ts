@@ -143,9 +143,9 @@ export function generateCategoryMetadata(categorySlug: string): Metadata {
       type: 'website',
       images: [
         {
-          url: `${BASE_URL}/placeholders/placeholder-d-0001.svg`,
-          width: 800,
-          height: 1066,
+          url: `${BASE_URL}/api/og?title=${encodeURIComponent(categoryName)}&code=${encodeURIComponent(catMeta ? 'CURATED' : 'ARCHIVE')}&cat=${encodeURIComponent(categoryName)}&work=${encodeURIComponent('Bespoke Tailoring')}`,
+          width: 1200,
+          height: 630,
           alt: `${categoryName} Tailoring — ${SITE_CONFIG.shopName} Chennai`,
         },
       ],
@@ -154,7 +154,12 @@ export function generateCategoryMetadata(categorySlug: string): Metadata {
       card: 'summary_large_image',
       title,
       description,
-      images: [`${BASE_URL}/placeholders/placeholder-d-0001.svg`],
+      images: [
+        `${BASE_URL}/api/og?title=${encodeURIComponent(categoryName)}&code=${encodeURIComponent(catMeta ? 'CURATED' : 'ARCHIVE')}&cat=${encodeURIComponent(categoryName)}&work=${encodeURIComponent('Bespoke Tailoring')}`,
+      ],
+    },
+    other: {
+      'pinterest-rich-pin': 'true',
     },
   }
 }
@@ -166,6 +171,7 @@ export function generateDesignMetadata(design: DesignRecord, categorySlug: strin
   const title = `${design.designCode} — ${design.title} | ${SITE_CONFIG.shopName} Chennai`
   const description = `${design.title} (${design.designCode}) custom women's tailoring in Chennai. ${design.workType || 'Artisanal handwork'} on ${design.fabricOptions?.[0] || 'pure silk'}. Book fitting.`
   const canonicalUrl = `${BASE_URL}/collections/${categorySlug}/${design.slug}`
+  const dynamicOgUrl = `${BASE_URL}/api/og?code=${encodeURIComponent(design.designCode)}&title=${encodeURIComponent(design.title)}&cat=${encodeURIComponent(design.categoryName)}&work=${encodeURIComponent(design.workType || 'Artisanal Handcraft')}`
 
   return {
     title,
@@ -189,6 +195,12 @@ export function generateDesignMetadata(design: DesignRecord, categorySlug: strin
       type: 'article',
       images: [
         {
+          url: dynamicOgUrl,
+          width: 1200,
+          height: 630,
+          alt: generateSeoAltText(design),
+        },
+        {
           url: design.imageUrl.startsWith('http') ? design.imageUrl : `${BASE_URL}${design.imageUrl}`,
           width: design.width,
           height: design.height,
@@ -200,7 +212,10 @@ export function generateDesignMetadata(design: DesignRecord, categorySlug: strin
       card: 'summary_large_image',
       title,
       description,
-      images: [design.imageUrl.startsWith('http') ? design.imageUrl : `${BASE_URL}${design.imageUrl}`],
+      images: [dynamicOgUrl],
+    },
+    other: {
+      'pinterest-rich-pin': 'true',
     },
   }
 }

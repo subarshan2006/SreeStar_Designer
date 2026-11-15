@@ -395,12 +395,12 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Prevent duplicate content: canonical tags, trailing slash consistency
 
 ### Sprint 33 — Open Graph & Social SEO
-- [ ] OG tags for every page: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`
-- [ ] Twitter Card tags: `twitter:card` (summary_large_image), `twitter:title`, `twitter:description`, `twitter:image`
-- [ ] Generate dynamic OG images for design detail pages (design photo + shop name overlay)
-- [ ] Use `next/og` (Vercel OG) for dynamic image generation
-- [ ] Test sharing on: WhatsApp, Instagram stories, Facebook, Twitter
-- [ ] Pinterest: add `<meta name="pinterest" content="nopin">` selectively or enable rich pins
+- [x] OG tags for every page: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`
+- [x] Twitter Card tags: `twitter:card` (summary_large_image), `twitter:title`, `twitter:description`, `twitter:image`
+- [x] Generate dynamic OG images for design detail pages (design photo + shop name overlay)
+- [x] Use `next/og` (Vercel OG) for dynamic image generation
+- [x] Test sharing on: WhatsApp, Instagram stories, Facebook, Twitter
+- [x] Pinterest: add `<meta name="pinterest" content="nopin">` selectively or enable rich pins
 
 ### Sprint 34 — Image SEO
 - [ ] Descriptive file names: `bridal-maggam-blouse-gold-zardosi-D0045.webp` (not `IMG_2847.jpg`)
