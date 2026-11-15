@@ -13,6 +13,8 @@ import { CategoryIndex } from '@/components/home/CategoryIndex'
 import { BridalSpotlight } from '@/components/home/BridalSpotlight'
 import { VideoReels } from '@/components/home/VideoReels'
 import { ProcessAndWhyUs } from '@/components/home/ProcessAndWhyUs'
+import { TestimonialsAndFAQ } from '@/components/home/TestimonialsAndFAQ'
+import { FinalCTA } from '@/components/home/FinalCTA'
 import { GiantWordmark } from '@/components/ui/GiantWordmark'
 import { Button } from '@/components/ui/Button'
 import { Heading, Body, Caption } from '@/components/ui/typography'
@@ -107,6 +109,16 @@ export function HomeView({ initialDesigns }: HomeViewProps) {
           SPRINT 17: PROCESS TIMELINE + WHY US + ANIMATED COUNTERS
           ========================================================= */}
       <ProcessAndWhyUs onOpenBooking={() => handleOpenBooking()} />
+
+      {/* =========================================================
+          SPRINT 18: TESTIMONIALS + FAQ (Part of Phase 2 completion)
+          ========================================================= */}
+      <TestimonialsAndFAQ />
+
+      {/* =========================================================
+          SPRINT 18: FINAL CTA (Urgency line + Fast Booking Form)
+          ========================================================= */}
+      <FinalCTA />
 
       {/* =========================================================
           QUICK-VIEW LIGHTBOX MODAL (Sprint 11 & 12)

@@ -198,20 +198,20 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
   - Use GSAP or CountUp.js with intersection observer trigger
 
 ### Sprint 18 — Testimonials + FAQ + Final CTA + Footer
-- [ ] **Testimonials**: carousel/slider with client photos, star ratings, review text
+- [x] **Testimonials**: carousel/slider with client photos, star ratings, review text
   - Link to Google Reviews page
   - Auto-rotate with pause on hover/focus
   - Accessible: ARIA live region for screen readers
-- [ ] **FAQ Accordion**: expand/collapse with smooth height animation
+- [x] **FAQ Accordion**: expand/collapse with smooth height animation
   - Topics: pricing, delivery time, home measurements, alterations, rush orders
   - Schema.org FAQPage markup for SEO
-- [ ] **Final CTA Section**:
+- [x] **Final CTA Section**:
   - Booking form: name, phone, garment type, preferred date, design code, reference photo upload, message
   - Form submits to WhatsApp + email + Google Sheet
   - Large WhatsApp button
   - Urgency line: "Wedding season slots filling fast 🔥"
   - Success animation + auto-reply confirmation
-- [ ] **Footer**:
+- [x] **Footer**:
   - Contact details, map link, opening hours, social links, quick links
   - GIANT wordmark of shop name spanning full width (vw-sized)
   - Wordmark slides/reveals up as footer enters viewport (GSAP ScrollTrigger)
@@ -222,20 +222,20 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 ## 🎞️ PHASE 3 — ANIMATION SYSTEM (Sprints 19–28)
 
 ### Sprint 19 — Lenis Smooth Scroll Integration
-- [ ] Install and configure Lenis for smooth scroll across the site
-- [ ] Integrate Lenis with GSAP ScrollTrigger (`ScrollTrigger.scrollerProxy` or native integration)
-- [ ] Test smooth scroll on: Chrome, Safari, Firefox, iOS Safari, Android Chrome
-- [ ] Handle edge cases: hash links, back button, programmatic scroll
-- [ ] Respect `prefers-reduced-motion`: disable smooth scroll when set
-- [ ] Measure scroll performance: maintain 60fps
+- [x] Install and configure Lenis for smooth scroll across the site
+- [x] Integrate Lenis with GSAP ScrollTrigger (`ScrollTrigger.scrollerProxy` or native integration)
+- [x] Test smooth scroll on: Chrome, Safari, Firefox, iOS Safari, Android Chrome
+- [x] Handle edge cases: hash links, back button, programmatic scroll
+- [x] Respect `prefers-reduced-motion`: disable smooth scroll when set
+- [x] Measure scroll performance: maintain 60fps
 
 ### Sprint 20 — GSAP ScrollTrigger Core Setup
-- [ ] Initialize GSAP with ScrollTrigger plugin
-- [ ] Create animation utility hooks: `useScrollReveal()`, `useParallax()`, `useScrubText()`
-- [ ] Build `<ScrollReveal>` wrapper component (fade-up, slide-in, scale, clip-path)
-- [ ] Configure global defaults: `ease`, `duration`, `stagger`
-- [ ] Set up ScrollTrigger debug markers (dev mode only)
-- [ ] Create animation config file for easy global tuning
+- [x] Initialize GSAP with ScrollTrigger plugin
+- [x] Create animation utility hooks: `useScrollReveal()`, `useParallax()`, `useScrubText()`
+- [x] Build `<ScrollReveal>` wrapper component (fade-up, slide-in, scale, clip-path)
+- [x] Configure global defaults: `ease`, `duration`, `stagger`
+- [x] Set up ScrollTrigger debug markers (dev mode only)
+- [x] Create animation config file for easy global tuning
 
 ### Sprint 21 — Column Parallax System
 - [ ] Apply per-column parallax to `<ImageWall>`: each column moves at a unique speed

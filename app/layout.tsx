@@ -60,6 +60,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
+
 export default function RootLayout({
   children,
 }: {
@@ -71,7 +73,7 @@ export default function RootLayout({
       className={`${cinzel.variable} ${playfair.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory">
-        {children}
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   )
