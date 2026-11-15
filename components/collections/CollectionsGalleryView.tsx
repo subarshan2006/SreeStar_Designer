@@ -10,7 +10,7 @@ import { DesignLightbox } from '@/components/home/DesignLightbox'
 import { BookingModal } from '@/components/navigation/BookingModal'
 import { createWhatsAppLink } from '@/lib/whatsapp'
 import { generateSeoAltText } from '@/lib/seo'
-import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
+import { CATEGORIES_WITH_META } from '@/lib/constants'
 import {
   Search,
   SlidersHorizontal,
@@ -144,12 +144,12 @@ export function CollectionsGalleryView({
           design={activeLightboxDesign}
           onClose={() => setActiveLightboxIndex(null)}
           onNext={() => {
-            if (activeLightboxIndex < visibleDesigns.length - 1) {
+            if (activeLightboxIndex !== null && activeLightboxIndex < visibleDesigns.length - 1) {
               setActiveLightboxIndex(activeLightboxIndex + 1)
             }
           }}
           onPrev={() => {
-            if (activeLightboxIndex > 0) {
+            if (activeLightboxIndex !== null && activeLightboxIndex > 0) {
               setActiveLightboxIndex(activeLightboxIndex - 1)
             }
           }}

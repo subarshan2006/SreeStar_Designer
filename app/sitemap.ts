@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
+import { CATEGORIES_WITH_META } from '@/lib/constants'
 import { getAllDesigns } from '@/lib/api'
 import { CHENNAI_LOCALITIES } from '@/lib/local-seo'
 import { getAllBlogPosts } from '@/lib/blog'

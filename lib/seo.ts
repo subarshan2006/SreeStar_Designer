@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { SITE_CONFIG } from './constants'
-import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
+import { SITE_CONFIG, CATEGORIES_WITH_META } from './constants'
 import { DesignRecord } from './api'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sreestar.com'

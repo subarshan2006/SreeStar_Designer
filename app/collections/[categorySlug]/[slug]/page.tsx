@@ -149,7 +149,7 @@ export default async function DesignDetailPage({
               </div>
 
               {/* Garment Editorial Description */}
-              <Body size="md" tone="muted" className="leading-relaxed">
+              <Body size="base" tone="muted" className="leading-relaxed">
                 {design.description}
               </Body>
 

@@ -9,7 +9,15 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-SREEST
  * Custom Event Tracking Helper for Conversions
  */
 export function trackGaEvent(
-  eventName: 'whatsapp_click' | 'fitting_booked' | 'design_enquiry' | 'collection_view' | 'search_query',
+  eventName:
+    | 'whatsapp_click'
+    | 'fitting_booked'
+    | 'design_enquiry'
+    | 'collection_view'
+    | 'search_query'
+    | 'wishlist_add'
+    | 'call_click'
+    | 'wishlist_share',
   eventParams?: Record<string, unknown>
 ) {
   if (typeof window !== 'undefined' && (window as any).gtag) {

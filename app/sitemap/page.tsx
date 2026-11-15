@@ -3,8 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/navigation/Navbar'
 import { Heading, Body, Caption } from '@/components/ui/typography'
-import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
-import { SITE_CONFIG } from '@/lib/constants'
+import { SITE_CONFIG, CATEGORIES_WITH_META } from '@/lib/constants'
 import { JsonLd, getBreadcrumbSchema } from '@/lib/schema'
 import {
   ArrowLeft,

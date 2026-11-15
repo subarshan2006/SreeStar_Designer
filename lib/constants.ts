@@ -29,3 +29,27 @@ export const SITE_CONFIG = {
     { id: '90s-collection', name: '90s Collection', badge: 'Retro Vintage', count: '40+' },
   ],
 } as const
+
+export interface CategoryMeta {
+  id: string
+  name: string
+  badge: string
+  count: string
+  desc: string
+}
+
+export const CATEGORIES_WITH_META: CategoryMeta[] = [
+  { id: 'all', name: 'All Designs', badge: 'Full Archive', count: '500+', desc: 'Explore all tailored pieces' },
+  { id: 'bridal-blouses', name: 'Bridal / Wedding Blouses', badge: 'Signature Maggam', count: '140+', desc: 'Peacock, floral & zardosi craftsmanship' },
+  { id: 'grand-blouses', name: 'Grand Blouses', badge: 'Heavy Work', count: '110+', desc: 'Kundan, stone & velvet wedding wear' },
+  { id: 'designer-blouses', name: 'Designer / Party Blouses', badge: 'Modern Cuts', count: '95+', desc: 'Contemporary cuts & evening elegance' },
+  { id: 'daily-wear-blouses', name: 'Daily Wear Blouses', badge: 'Comfort Fit', count: '60+', desc: 'Breathable cotton & tailored everyday cuts' },
+  { id: 'back-neck-designs', name: 'Back Neck Designs', badge: 'Creative Cuts', count: '85+', desc: 'Drop, pot, illusion & deep cuts' },
+  { id: 'sleeve-designs', name: 'Sleeve Designs', badge: 'Puff & Zari', count: '70+', desc: '90s puff, elbow zari & bell sleeves' },
+  { id: 'frocks', name: 'Frocks & Grand Frocks', badge: 'Occasion Wear', count: '55+', desc: 'Flared party frocks & grand gowns' },
+  { id: 'kurtis', name: 'Kurtis', badge: 'A-Line & Straight', count: '65+', desc: 'Precision-stitched everyday elegance' },
+  { id: 'churidars', name: 'Churidars', badge: 'Custom Fit', count: '50+', desc: 'Bespoke bottom & top fitting' },
+  { id: '90s-collection', name: '90s Collection', badge: 'Retro Vintage', count: '40+', desc: 'Authentic 1990s South Indian nostalgia' },
+  { id: 'new', name: 'New Arrivals', badge: 'Just In', count: '24', desc: 'Latest creations finished this week' },
+  { id: 'trending', name: 'Trending Now', badge: 'Most Requested', count: '38', desc: 'Top requested bridal patterns' },
+]
