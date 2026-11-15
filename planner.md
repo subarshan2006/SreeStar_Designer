@@ -238,30 +238,30 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Create animation config file for easy global tuning
 
 ### Sprint 21 — Column Parallax System
-- [ ] Apply per-column parallax to `<ImageWall>`: each column moves at a unique speed
-- [ ] Speed variance: column 1 at 0.8x, column 2 at 1.0x, column 3 at 0.9x, etc.
-- [ ] Use `ScrollTrigger` with `scrub: true` for butter-smooth parallax
-- [ ] Only animate `transform: translateY()` for GPU compositing
-- [ ] Disable parallax on mobile if performance drops below 60fps
-- [ ] Test with 50+ images loaded
+- [x] Apply per-column parallax to `<ImageWall>`: each column moves at a unique speed
+- [x] Speed variance: column 1 at 0.8x, column 2 at 1.0x, column 3 at 0.9x, etc.
+- [x] Use `ScrollTrigger` with `scrub: true` for butter-smooth parallax
+- [x] Only animate `transform: translateY()` for GPU compositing
+- [x] Disable parallax on mobile if performance drops below 60fps
+- [x] Test with 50+ images loaded
 
 ### Sprint 22 — Staggered Image Reveal Animations
-- [ ] Images reveal with clip-path or mask animation as they enter viewport
-- [ ] Stagger per column: images in same column animate sequentially
-- [ ] Options: `clip-path: inset()` wipe, scale from 0.95 → 1, opacity 0 → 1
-- [ ] Use `IntersectionObserver` + GSAP for lazy initialization (don't create 500 ScrollTriggers)
-- [ ] Batch animations: use `ScrollTrigger.batch()` for performance
-- [ ] `prefers-reduced-motion`: simple opacity fade only
+- [x] Images reveal with clip-path or mask animation as they enter viewport
+- [x] Stagger per column: images in same column animate sequentially
+- [x] Options: `clip-path: inset()` wipe, scale from 0.95 → 1, opacity 0 → 1
+- [x] Use `IntersectionObserver` + GSAP for lazy initialization (don't create 500 ScrollTriggers)
+- [x] Batch animations: use `ScrollTrigger.batch()` for performance
+- [x] `prefers-reduced-motion`: simple opacity fade only
 
 ### Sprint 23 — Word-by-Word Scroll Scrub Perfection
-- [ ] Refine the Welcome Text scrub from Sprint 13
-- [ ] Split text into `<span>` per word using SplitText or custom splitter
-- [ ] Each word animates: `opacity: 0.15 → 1`, `y: 8px → 0`
-- [ ] Scrub timeline: evenly distribute word animations across scroll distance
-- [ ] Pin container for the duration of the reveal
-- [ ] Add subtle color shift: words go from grey → charcoal/black
-- [ ] Test on long text (40+ words) and short text (15 words)
-- [ ] Mobile: reduce pin distance, larger words
+- [x] Refine the Welcome Text scrub from Sprint 13
+- [x] Split text into `<span>` per word using SplitText or custom splitter
+- [x] Each word animates: `opacity: 0.15 → 1`, `y: 8px → 0`
+- [x] Scrub timeline: evenly distribute word animations across scroll distance
+- [x] Pin container for the duration of the reveal
+- [x] Add subtle color shift: words go from grey → charcoal/black
+- [x] Test on long text (40+ words) and short text (15 words)
+- [x] Mobile: reduce pin distance, larger words
 
 ### Sprint 24 — Page Transitions
 - [ ] Implement smooth page transitions between routes

@@ -31,9 +31,10 @@ export function WelcomeScrubText({
 
       if (totalScrollableDistance <= 0) return
 
-      // Progress goes from 0 (when top hits top of viewport) to 1 (when bottom meets bottom of viewport)
+      // Progress ranges from 0.0 (top hits viewport) to 1.0 (bottom meets bottom of viewport)
       const scrolled = -rect.top
-      const progress = Math.max(0, Math.min(1, scrolled / totalScrollableDistance))
+      const rawProgress = scrolled / totalScrollableDistance
+      const progress = Math.max(0, Math.min(1, rawProgress))
       setScrollProgress(progress)
     }
 
@@ -47,16 +48,16 @@ export function WelcomeScrubText({
     <section
       ref={containerRef}
       aria-label="Welcome Manifesto"
-      className="relative w-full min-h-[220vh] bg-ivory selection:bg-maroon selection:text-ivory"
+      className="relative w-full min-h-[185vh] sm:min-h-[225vh] bg-ivory selection:bg-maroon selection:text-ivory select-none"
     >
       {/* Sticky Fullscreen Pinned Viewport */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between px-4 sm:px-8 md:px-14 py-12 sm:py-16 overflow-hidden">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between px-4 sm:px-8 md:px-14 py-10 sm:py-16 overflow-hidden">
         {/* Background Delicate Studio Watermark */}
         <div
           aria-hidden="true"
-          className="pointer-events-none select-none absolute inset-0 flex items-center justify-center opacity-[0.03] -z-10"
+          className="pointer-events-none select-none absolute inset-0 flex items-center justify-center opacity-[0.035] -z-10"
         >
-          <span className="font-display font-black text-[25vw] uppercase tracking-tighter text-charcoal">
+          <span className="font-display font-black text-[28vw] uppercase tracking-tighter text-charcoal">
             {shopName}
           </span>
         </div>
@@ -64,7 +65,7 @@ export function WelcomeScrubText({
         {/* Top Meta Pin Badge */}
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between border-b border-surface-border/60 pb-4">
           <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-maroon" />
+            <span className="w-2 h-2 rounded-full bg-maroon animate-ping" />
             <Caption>The SreeStar Philosophy • Craftsmanship & Fit</Caption>
           </div>
           <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-charcoal-subtle">
@@ -74,21 +75,37 @@ export function WelcomeScrubText({
         </div>
 
         {/* Center: The Word-by-Word Scroll Scrub Text */}
-        <div className="max-w-5xl mx-auto w-full my-auto py-8">
-          <blockquote className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.25] sm:leading-[1.2]">
+        <div className="max-w-5xl mx-auto w-full my-auto py-6 sm:py-8">
+          <blockquote className="font-serif italic text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.3] sm:leading-[1.2]">
             {words.map((word, idx) => {
-              // Calculate threshold for this word (0.05 to 0.95 range)
-              const wordThreshold = 0.05 + (idx / words.length) * 0.88
-              const isRevealed = isReducedMotion || scrollProgress >= wordThreshold
+              // Evenly distribute each word's reveal threshold across 0.05 to 0.92 scroll range
+              const wordStart = 0.04 + (idx / words.length) * 0.88
+              const wordWindow = 0.06 // smooth fade window
+
+              let wordProgress = 0
+              if (isReducedMotion) {
+                wordProgress = 1
+              } else if (scrollProgress >= wordStart + wordWindow) {
+                wordProgress = 1
+              } else if (scrollProgress <= wordStart) {
+                wordProgress = 0
+              } else {
+                wordProgress = (scrollProgress - wordStart) / wordWindow
+              }
+
+              // Smoothly interpolate opacity (0.12 -> 1.0) and vertical translation (8px -> 0px)
+              const opacity = 0.12 + 0.88 * wordProgress
+              const translateY = Math.round(8 * (1 - wordProgress))
+              const isFullyVisible = wordProgress >= 0.85
 
               return (
                 <span
                   key={`${word}-${idx}`}
-                  className="inline-block transition-all duration-300 ease-out mr-[0.26em]"
+                  className="inline-block transition-transform duration-100 ease-out mr-[0.24em]"
                   style={{
-                    opacity: isRevealed ? 1 : 0.12,
-                    transform: isRevealed ? 'translateY(0px)' : 'translateY(8px)',
-                    color: isRevealed ? '#141413' : '#A39E96',
+                    opacity,
+                    transform: `translate3d(0, ${translateY}px, 0)`,
+                    color: isFullyVisible ? '#141413' : '#A8A399',
                   }}
                 >
                   {word}
@@ -97,11 +114,11 @@ export function WelcomeScrubText({
             })}
           </blockquote>
 
-          {/* Progress Indicator Line */}
+          {/* Progress Indicator Line with Gold Accent */}
           <div className="mt-8 sm:mt-12 flex items-center gap-4 max-w-xs">
             <div className="h-[2px] flex-1 bg-surface-border overflow-hidden rounded-full">
               <div
-                className="h-full bg-maroon transition-all duration-150 ease-out"
+                className="h-full bg-gradient-to-r from-maroon to-gold transition-all duration-150 ease-out"
                 style={{
                   width: `${Math.round((isReducedMotion ? 1 : scrollProgress) * 100)}%`,
                 }}

@@ -6,6 +6,7 @@ import { DesignRecord } from '@/lib/api'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { DesignCodeBadge, Caption, Heading } from '@/components/ui/typography'
 import { SITE_CONFIG } from '@/lib/constants'
+import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider'
 import { ArrowRight, Eye, MessageCircle, Sparkles } from 'lucide-react'
 
 export interface ImageWallProps {
@@ -22,9 +23,11 @@ export function ImageWall({
   const [columnCount, setColumnCount] = useState<number>(5)
   const [scrollY, setScrollY] = useState<number>(0)
   const [isReducedMotion, setIsReducedMotion] = useState<boolean>(false)
+  const [revealedIds, setRevealedIds] = useState<Set<string>>(new Set())
   const containerRef = useRef<HTMLDivElement>(null)
+  const { lenis } = useSmoothScroll()
 
-  // Detect screen size to determine columns count (Desktop: 5–6, Tablet: 3–4, Mobile: 2)
+  // Detect screen size for responsive columns (Desktop: 5–6, Tablet: 3–4, Mobile: 2)
   useEffect(() => {
     const updateColumns = () => {
       const width = window.innerWidth
@@ -51,41 +54,96 @@ export function ImageWall({
     return () => window.removeEventListener('resize', updateColumns)
   }, [])
 
-  // Smooth scroll listener for column parallax drift
+  // Synchronize with Lenis scroll stream or RAF fallback for 60fps parallax drift
   useEffect(() => {
     if (isReducedMotion) return
 
     let rafId: number
-    const handleScroll = () => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      // Only compute when near or inside viewport
-      if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
-        const relativeScroll = window.innerHeight - rect.top
-        setScrollY(relativeScroll)
+
+    if (lenis) {
+      // Connect to Lenis smooth scroll ticker directly
+      const onLenisScroll = (e: any) => {
+        if (!containerRef.current) return
+        const rect = containerRef.current.getBoundingClientRect()
+        if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
+          setScrollY(e.scroll || window.scrollY)
+        }
       }
-    }
 
-    const onScrollTick = () => {
-      handleScroll()
+      lenis.on('scroll', onLenisScroll)
+      return () => lenis.off('scroll', onLenisScroll)
+    } else {
+      // Standalone RAF fallback
+      const handleScroll = () => {
+        if (!containerRef.current) return
+        const rect = containerRef.current.getBoundingClientRect()
+        if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
+          setScrollY(window.scrollY)
+        }
+      }
+
+      const onScrollTick = () => {
+        handleScroll()
+        rafId = requestAnimationFrame(onScrollTick)
+      }
+
       rafId = requestAnimationFrame(onScrollTick)
+      return () => cancelAnimationFrame(rafId)
+    }
+  }, [lenis, isReducedMotion])
+
+  // Sprint 22: Batched Intersection Observer for staggered card reveals
+  useEffect(() => {
+    if (isReducedMotion) {
+      // If reduced motion, reveal everything immediately
+      const allIds = new Set(designs.map((d) => d.id))
+      setRevealedIds(allIds)
+      return
     }
 
-    rafId = requestAnimationFrame(onScrollTick)
-    return () => cancelAnimationFrame(rafId)
-  }, [isReducedMotion])
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('data-design-id')
+            if (id) {
+              setRevealedIds((prev) => {
+                const next = new Set(prev)
+                next.add(id)
+                return next
+              })
+              observer.unobserve(entry.target)
+            }
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1,
+      }
+    )
+
+    const cards = containerRef.current?.querySelectorAll('[data-design-id]')
+    cards?.forEach((card) => observer.observe(card))
+
+    return () => observer.disconnect()
+  }, [designs, columnCount, isReducedMotion])
 
   // Distribute designs across active columns balancing heights (Masonry algorithm)
   const columns: DesignRecord[][] = Array.from({ length: columnCount }, () => [])
   const columnHeights: number[] = Array.from({ length: columnCount }, () => 0)
 
-  // Staggered starting vertical offsets for each column (staggered, not flat)
+  // Staggered starting vertical offsets for each column (Sprint 10)
   const columnOffsets = [0, 80, 30, 110, 50, 130]
-  // Parallax scroll speed variance per column (drifts at different speeds)
-  const columnSpeeds = [0.03, 0.08, 0.02, 0.09, 0.04, 0.07]
+
+  // Sprint 21: Precise per-column parallax speed ratios (0.8x to 1.2x variance)
+  // Mobile uses a gentle 0.02x factor to maintain strict 60fps on low-end devices
+  const isMobile = columnCount === 2
+  const columnSpeeds = isMobile
+    ? [0.015, 0.035]
+    : [0.03, 0.075, 0.02, 0.085, 0.04, 0.065]
 
   designs.slice(0, 42).forEach((design) => {
-    // Pick column with smallest cumulative height
     let minIndex = 0
     let minHeight = columnHeights[0]
 
@@ -97,7 +155,6 @@ export function ImageWall({
     }
 
     columns[minIndex].push(design)
-    // Approximate height based on aspect ratio
     const cardHeight = design.height / (design.width / 300)
     columnHeights[minIndex] += cardHeight + 24
   })
@@ -156,16 +213,26 @@ export function ImageWall({
                   transform: `translate3d(0, ${parallaxTranslate}px, 0)`,
                 }}
               >
-                {colDesigns.map((design) => {
+                {colDesigns.map((design, itemIdx) => {
+                  const isRevealed = revealedIds.has(design.id)
+                  const staggeredDelay = (itemIdx % 5) * 60
                   const waText = `Hi ${SITE_CONFIG.shopName}! I saw design code *${design.designCode}* (${design.title}) on your Image Wall. Can I know more details?`
 
                   return (
                     <article
                       key={design.id}
+                      data-design-id={design.id}
                       onClick={() => {
                         if (onSelectDesign) onSelectDesign(design)
                       }}
-                      className="group relative flex flex-col bg-surface-card rounded-sm overflow-hidden border border-surface-border transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer"
+                      style={{
+                        transitionDelay: `${staggeredDelay}ms`,
+                      }}
+                      className={`group relative flex flex-col bg-surface-card rounded-sm overflow-hidden border border-surface-border transition-all duration-700 ease-out hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer ${
+                        isRevealed
+                          ? 'opacity-100 translate-y-0 scale-100 [clip-path:inset(0%_0%_0%_0%)]'
+                          : 'opacity-0 translate-y-6 scale-[0.97] [clip-path:inset(10%_0%_0%_0%)]'
+                      }`}
                     >
                       {/* Image Container with Zero Layout Shift */}
                       <div className="relative overflow-hidden">
