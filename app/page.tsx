@@ -1,11 +1,23 @@
 import React from 'react'
-import { getFeaturedDesigns } from '@/lib/api'
+import { getFeaturedDesigns, getTestimonials, getFAQs } from '@/lib/api'
 import { HomeView } from '@/components/home/HomeView'
+import { JsonLd, getAggregateRatingSchema, getFAQPageSchema } from '@/lib/schema'
 
 export const revalidate = 60 // ISR revalidation
 
 export default async function HomePage() {
-  const featuredDesigns = await getFeaturedDesigns(42)
+  const [featuredDesigns, testimonials, faqs] = await Promise.all([
+    getFeaturedDesigns(42),
+    getTestimonials(),
+    getFAQs(),
+  ])
 
-  return <HomeView initialDesigns={featuredDesigns} />
+  return (
+    <>
+      <JsonLd schema={getAggregateRatingSchema(testimonials)} />
+      <JsonLd schema={getFAQPageSchema(faqs)} />
+      <HomeView initialDesigns={featuredDesigns} />
+    </>
+  )
 }
+

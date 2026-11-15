@@ -39,30 +39,59 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: `${SITE_CONFIG.shopName} — Award-Level Women's Custom Blouse & Tailoring Studio`,
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://sreestar.com'),
+  title: {
+    default: `${SITE_CONFIG.shopName} — Award-Level Women's Custom Blouse & Tailoring Studio Chennai`,
+    template: `%s | ${SITE_CONFIG.shopName} Chennai`,
+  },
   description: SITE_CONFIG.description,
   keywords: [
-    'bridal blouse stitching',
-    'maggam work blouse',
+    'bridal blouse stitching chennai',
+    'maggam work blouse chennai',
     'custom tailoring women chennai',
-    'designer blouse tailor',
-    'grand frock stitching',
-    'kurti custom tailor',
-    'churidar stitching',
+    'designer blouse tailor t nagar',
+    'grand frock stitching chennai',
+    'kurti custom tailor chennai',
+    'churidar stitching chennai',
     '90s retro blouse designs',
+    'women tailoring shop chennai',
   ],
   authors: [{ name: SITE_CONFIG.shopName }],
+  creator: SITE_CONFIG.shopName,
+  publisher: SITE_CONFIG.shopName,
+  formatDetection: {
+    email: false,
+    address: true,
+    telephone: true,
+  },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: `${SITE_CONFIG.shopName} — Custom Blouses & Women's Tailoring`,
+    title: `${SITE_CONFIG.shopName} — Custom Blouses & Women's Tailoring Studio Chennai`,
     description: SITE_CONFIG.description,
-    type: 'website',
+    url: 'https://sreestar.com',
+    siteName: SITE_CONFIG.shopName,
     locale: 'en_IN',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { JsonLd, getLocalBusinessSchema } from '@/lib/schema'
 
 export default function RootLayout({
   children,
@@ -75,6 +104,7 @@ export default function RootLayout({
       className={`${cinzel.variable} ${playfair.variable} ${plusJakarta.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-ivory text-charcoal font-sans antialiased selection:bg-maroon selection:text-ivory">
+        <JsonLd schema={getLocalBusinessSchema()} />
         <SmoothScrollProvider>
           <CustomCursor />
           {children}

@@ -182,7 +182,7 @@ export function ImageWall({
 
         <div className="flex items-center gap-4">
           <Link
-            href="/collections/all"
+            href="/collections"
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-maroon hover:text-maroon-hover font-bold border-b border-maroon pb-0.5"
           >
             <span>View All 500+ Designs</span>
@@ -322,7 +322,7 @@ export function ImageWall({
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <Link
-            href="/collections/all"
+            href="/collections"
             className="inline-flex items-center gap-2 bg-charcoal text-white hover:bg-maroon transition-colors px-6 py-3.5 rounded text-xs font-mono uppercase tracking-widest font-semibold"
           >
             <span>Explore All 500+ Designs</span>

@@ -55,14 +55,20 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Centre-Right: About / Gallery / Contact */}
+          {/* Centre-Right: Collections / About / Contact */}
           <div className="hidden md:flex items-center gap-8 font-sans text-xs tracking-widest uppercase opacity-90 pointer-events-auto">
-            <a
-              href="#about"
+            <Link
+              href="/collections"
+              className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
+            >
+              Archive
+            </Link>
+            <Link
+              href="/#about"
               className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
             >
               About
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setIsCategoryOpen(true)}
@@ -70,12 +76,12 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
             >
               Gallery
             </button>
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="hover:opacity-100 hover:underline underline-offset-4 transition-all"
             >
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* Right: Book a Fitting + & Mobile Menu */}
@@ -123,13 +129,20 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
                 <span>+ View All 500+ Collections</span>
                 <span>→</span>
               </button>
-              <a
-                href="#about"
+              <Link
+                href="/collections"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block py-2 border-b border-surface-border text-maroon font-semibold"
+              >
+                Haute Couture Archive (500+)
+              </Link>
+              <Link
+                href="/#about"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-2 border-b border-surface-border text-charcoal"
               >
                 About Tailoring Studio
-              </a>
+              </Link>
               <Link
                 href="/styleguide"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -137,13 +150,13 @@ export function Navbar({ activeCategory, onSelectCategory }: NavbarProps) {
               >
                 Design System & Styleguide
               </Link>
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-2 text-charcoal"
               >
                 Contact & Google Maps
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={() => {

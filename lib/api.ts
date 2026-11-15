@@ -116,10 +116,18 @@ export async function getDesignByCode(code: string): Promise<DesignRecord | null
 }
 
 /**
- * Fetch a single design by its URL slug
+ * Fetch a single design by its URL slug or code
  */
 export async function getDesignBySlug(slug: string): Promise<DesignRecord | null> {
-  return ALL_DESIGNS_CACHE.find((d) => d.slug === slug) || null
+  const clean = slug.trim().toLowerCase()
+  return (
+    ALL_DESIGNS_CACHE.find(
+      (d) =>
+        d.slug.toLowerCase() === clean ||
+        d.designCode.toLowerCase() === clean ||
+        clean.includes(d.designCode.toLowerCase())
+    ) || null
+  )
 }
 
 /**

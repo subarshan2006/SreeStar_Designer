@@ -308,14 +308,126 @@ export function HomeView({ initialDesigns }: HomeViewProps) {
       </section>
 
       {/* =========================================================
-          GIANT FOOTER WORDMARK
+          GIANT FOOTER WORDMARK & ARCHITECTURAL FOOTER
           ========================================================= */}
-      <footer id="contact" className="w-full">
+      <footer id="contact" className="w-full border-t border-surface-border pt-12 pb-8 bg-surface-card/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs font-mono">
+            <div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-maroon block mb-3">
+                Collections Archive
+              </span>
+              <ul className="space-y-2 text-charcoal-muted">
+                <li>
+                  <Link href="/collections" className="hover:text-maroon transition-colors">
+                    All Collections (500+)
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collections/bridal-blouses" className="hover:text-maroon transition-colors">
+                    Bridal Maggam Blouses
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collections/grand-blouses" className="hover:text-maroon transition-colors">
+                    Grand Wedding Blouses
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collections/designer-blouses" className="hover:text-maroon transition-colors">
+                    Designer Party Blouses
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-maroon block mb-3">
+                Garment Silhouettes
+              </span>
+              <ul className="space-y-2 text-charcoal-muted">
+                <li>
+                  <Link href="/collections/frocks" className="hover:text-maroon transition-colors">
+                    Grand Party Frocks
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collections/kurtis" className="hover:text-maroon transition-colors">
+                    Custom Tailored Kurtis
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collections/churidars" className="hover:text-maroon transition-colors">
+                    Bespoke Churidars
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/collections/90s-collection" className="hover:text-maroon transition-colors">
+                    90s Vintage Collection
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-maroon block mb-3">
+                Atelier & Services
+              </span>
+              <ul className="space-y-2 text-charcoal-muted">
+                <li>
+                  <Link href="/sitemap" className="hover:text-maroon transition-colors">
+                    Site Index & Directory
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/styleguide" className="hover:text-maroon transition-colors">
+                    Design Tokens & System
+                  </Link>
+                </li>
+                <li>
+                  <span className="text-charcoal font-semibold">100% Fit Guarantee</span>
+                </li>
+                <li>
+                  <span className="text-maroon font-semibold">48-Hr Emergency Rush</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span className="text-[10px] uppercase font-bold tracking-widest text-maroon block mb-3">
+                Chennai Studio
+              </span>
+              <p className="text-charcoal-muted leading-relaxed">
+                {SITE_CONFIG.address}
+              </p>
+              <p className="text-charcoal font-bold mt-2">
+                {SITE_CONFIG.phone}
+              </p>
+              <p className="text-[11px] text-maroon mt-1">
+                {SITE_CONFIG.workingHours}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <GiantWordmark
           text={SITE_CONFIG.shopName.toUpperCase()}
           cityNote={`${SITE_CONFIG.city} Studio`}
           variant="footer"
         />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 pt-4 border-t border-surface-border/60 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-charcoal-subtle">
+          <span>&copy; {new Date().getFullYear()} {SITE_CONFIG.shopName} Tailoring Atelier. All rights reserved. Strictly Women Only.</span>
+          <div className="flex items-center gap-4 mt-2 sm:mt-0">
+            <Link href="/sitemap" className="hover:text-maroon transition-colors">
+              HTML Sitemap
+            </Link>
+            <span>•</span>
+            <Link href="/collections" className="hover:text-maroon transition-colors">
+              Collections
+            </Link>
+          </div>
+        </div>
       </footer>
     </main>
   )

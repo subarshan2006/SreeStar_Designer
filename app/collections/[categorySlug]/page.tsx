@@ -1,4 +1,5 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/navigation/Navbar'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
@@ -7,6 +8,8 @@ import { getDesignsByCategory } from '@/lib/api'
 import { CATEGORIES_WITH_META } from '@/components/navigation/CategoryOverlay'
 import { SITE_CONFIG } from '@/lib/constants'
 import { ArrowLeft, MessageCircle } from 'lucide-react'
+import { generateCategoryMetadata, generateSeoAltText } from '@/lib/seo'
+import { JsonLd, getBreadcrumbSchema } from '@/lib/schema'
 
 export const revalidate = 60 // ISR: regenerate every 60 seconds
 
@@ -14,6 +17,15 @@ export async function generateStaticParams() {
   return CATEGORIES_WITH_META.map((cat) => ({
     categorySlug: cat.id,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ categorySlug: string }>
+}): Promise<Metadata> {
+  const { categorySlug } = await params
+  return generateCategoryMetadata(categorySlug)
 }
 
 export default async function CategoryPage({
@@ -32,35 +44,43 @@ export default async function CategoryPage({
 
   const designs = await getDesignsByCategory(categorySlug)
 
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Collections', url: '/collections' },
+    { name: categoryInfo.name, url: `/collections/${categorySlug}` },
+  ]
+
   return (
     <div className="min-h-screen bg-ivory text-charcoal flex flex-col justify-between selection:bg-maroon selection:text-ivory">
+      <JsonLd schema={getBreadcrumbSchema(breadcrumbs)} />
       <Navbar activeCategory={categorySlug} />
 
       <main className="max-w-[96vw] mx-auto px-4 sm:px-6 md:px-8 pt-28 sm:pt-32 pb-24 w-full">
         {/* Breadcrumb & Navigation */}
         <div className="flex items-center justify-between border-b border-surface-border pb-4 mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-charcoal-muted hover:text-maroon transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Home</span>
+          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-charcoal-muted">
+            <Link href="/" className="hover:text-maroon transition-colors inline-flex items-center gap-1.5">
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Home</span>
+            </Link>
             <span className="text-surface-border">/</span>
-            <span className="text-charcoal font-semibold">Collections</span>
+            <Link href="/collections" className="hover:text-maroon transition-colors">
+              Collections
+            </Link>
             <span className="text-surface-border">/</span>
-            <span className="text-maroon">{categoryInfo.name}</span>
-          </Link>
+            <span className="text-maroon font-semibold">{categoryInfo.name}</span>
+          </div>
 
           <span className="font-mono text-xs text-charcoal-subtle">
             Showing {designs.length} designs
           </span>
         </div>
 
-        {/* Category Header */}
+        {/* Category Header with Strict H1 */}
         <div className="max-w-4xl mb-12 space-y-3">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-maroon" />
-            <Caption>{categoryInfo.badge} • Women Only</Caption>
+            <Caption>{categoryInfo.badge} • Women Only Atelier</Caption>
           </div>
           <Heading level={1} variant="serif" italic className="text-4xl sm:text-6xl text-charcoal">
             {categoryInfo.name}
@@ -75,6 +95,7 @@ export default async function CategoryPage({
           {designs.map((design, idx) => {
             const isStaggered = idx % 2 === 1
             const waText = `Hi ${SITE_CONFIG.shopName}! I am interested in design code *${design.designCode}* (${design.title}). Can I know fitting and stitching details?`
+            const detailUrl = `/collections/${categorySlug}/${design.slug}`
 
             return (
               <div
@@ -84,10 +105,10 @@ export default async function CategoryPage({
                 }`}
               >
                 {/* Image Container with Zero CLS */}
-                <div className="relative overflow-hidden">
+                <Link href={detailUrl} className="relative overflow-hidden block">
                   <OptimizedImage
                     src={design.imageUrl}
-                    alt={`${design.title} — ${design.designCode}`}
+                    alt={generateSeoAltText(design)}
                     width={design.width}
                     height={design.height}
                     aspectRatio={design.aspectRatio}
@@ -106,18 +127,18 @@ export default async function CategoryPage({
                       </span>
                     </div>
                   )}
-                </div>
+                </Link>
 
                 {/* Garment Details & CTAs */}
                 <div className="p-3.5 sm:p-4 flex flex-col justify-between flex-1 space-y-3">
-                  <div>
-                    <h3 className="font-serif text-sm sm:text-base font-semibold text-charcoal group-hover:text-maroon transition-colors line-clamp-1">
+                  <Link href={detailUrl} className="block group-hover:text-maroon transition-colors">
+                    <h3 className="font-serif text-sm sm:text-base font-semibold text-charcoal line-clamp-1">
                       {design.title}
                     </h3>
                     <p className="font-mono text-[11px] text-charcoal-muted mt-0.5 line-clamp-1">
                       {design.workType}
                     </p>
-                  </div>
+                  </Link>
 
                   <div className="pt-2 border-t border-surface-border/60 flex items-center justify-between">
                     <span className="text-[10px] font-mono text-charcoal-subtle uppercase">

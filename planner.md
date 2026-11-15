@@ -331,7 +331,7 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Create 404 and 500 error pages with navigation back to home
 
 ### Sprint 30 — Schema.org Structured Data
-- [ ] **LocalBusiness** schema on every page:
+- [x] **LocalBusiness** schema on every page:
   ```json
   {
     "@type": "LocalBusiness",
@@ -345,16 +345,16 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
     "priceRange": "$$"
   }
   ```
-- [ ] **Product** schema on each design detail page
-- [ ] **FAQPage** schema on FAQ section and page
-- [ ] **Review** / **AggregateRating** schema for testimonials
-- [ ] **BreadcrumbList** schema for navigation
-- [ ] **ImageObject** schema for gallery images with descriptive alt text
-- [ ] **VideoObject** schema for video reels
-- [ ] Validate all schema with Google Rich Results Test
+- [x] **Product** schema on each design detail page
+- [x] **FAQPage** schema on FAQ section and page
+- [x] **Review** / **AggregateRating** schema for testimonials
+- [x] **BreadcrumbList** schema for navigation
+- [x] **ImageObject** schema for gallery images with descriptive alt text
+- [x] **VideoObject** schema for video reels
+- [x] Validate all schema with Google Rich Results Test
 
 ### Sprint 31 — Keyword Strategy & On-Page SEO
-- [ ] Research and map primary keywords per page:
+- [x] Research and map primary keywords per page:
 
 | Page | Primary Keywords |
 |------|-----------------|
@@ -369,14 +369,14 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 | About | "[SHOP NAME] tailor [CITY]", "best tailor [CITY]" |
 | Contact | "book fitting [CITY]", "tailor appointment [CITY]" |
 
-- [ ] Write unique `<title>` tags (50–60 chars) for every page
-- [ ] Write unique `<meta description>` (150–160 chars) for every page
-- [ ] Add `<h1>` with primary keyword on every page (only one `<h1>`)
-- [ ] Use semantic heading hierarchy: h1 → h2 → h3
-- [ ] Add keyword-rich alt text to all images (e.g., "bridal maggam work blouse design with gold zardosi — D-0045")
+- [x] Write unique `<title>` tags (50–60 chars) for every page
+- [x] Write unique `<meta description>` (150–160 chars) for every page
+- [x] Add `<h1>` with primary keyword on every page (only one `<h1>`)
+- [x] Use semantic heading hierarchy: h1 → h2 → h3
+- [x] Add keyword-rich alt text to all images (e.g., "bridal maggam work blouse design with gold zardosi — D-0045")
 
 ### Sprint 32 — URL Architecture & Internal Linking
-- [ ] Clean URL structure:
+- [x] Clean URL structure:
   - `/` — Home
   - `/collections` — All designs
   - `/collections/bridal-blouses` — Category page
@@ -384,15 +384,15 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
   - `/about` — About page
   - `/contact` — Contact / Book a Fitting
   - `/gallery` — Full gallery (optional, can redirect to /collections)
-- [ ] Implement breadcrumbs on all pages with schema
-- [ ] Build internal linking strategy:
+- [x] Implement breadcrumbs on all pages with schema
+- [x] Build internal linking strategy:
   - Every design links to its category
   - Every category links to related categories
   - "You may also like" section on design pages
   - Blog posts (future) link to relevant categories
   - Footer contains all category links
-- [ ] Create an HTML sitemap page at `/sitemap`
-- [ ] Prevent duplicate content: canonical tags, trailing slash consistency
+- [x] Create an HTML sitemap page at `/sitemap`
+- [x] Prevent duplicate content: canonical tags, trailing slash consistency
 
 ### Sprint 33 — Open Graph & Social SEO
 - [ ] OG tags for every page: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`
