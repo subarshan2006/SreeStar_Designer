@@ -55,28 +55,28 @@ Phase 1 (Foundation) → Phase 2 (Core Pages) → Phase 3 (Animation System) →
 - [x] Create variant: hero wordmark (with overlap zone) vs footer wordmark (with reveal animation)
 
 ### Sprint 4 — Navigation System
-- [ ] Build minimal fixed nav: no background, plain text, mix-blend-mode: difference
-- [ ] Left: "+ Collections" (opens fullscreen category panel)
-- [ ] Centre-right: "About / Gallery / Contact" links
-- [ ] Right: "Book a Fitting +" CTA button
-- [ ] Mobile collapse: "+ Menu" hamburger + "Book" button
-- [ ] Build fullscreen category overlay panel with animated open/close
-- [ ] Categories in panel: All, Bridal/Wedding Blouses, Grand Blouses, Designer/Party Blouses, Daily Wear, Back Neck Designs, Sleeve Designs, Frocks, Grand Frocks, Kurtis, Churidars, 90s Collection, New, Trending
-- [ ] Keyboard navigation support (Escape to close, Tab through items)
-- [ ] Test mix-blend-mode across browsers (Safari, Chrome, Firefox)
+- [x] Build minimal fixed nav: no background, plain text, mix-blend-mode: difference
+- [x] Left: "+ Collections" (opens fullscreen category panel)
+- [x] Centre-right: "About / Gallery / Contact" links
+- [x] Right: "Book a Fitting +" CTA button
+- [x] Mobile collapse: "+ Menu" hamburger + "Book" button
+- [x] Build fullscreen category overlay panel with animated open/close
+- [x] Categories in panel: All, Bridal/Wedding Blouses, Grand Blouses, Designer/Party Blouses, Daily Wear, Back Neck Designs, Sleeve Designs, Frocks, Grand Frocks, Kurtis, Churidars, 90s Collection, New, Trending
+- [x] Keyboard navigation support (Escape to close, Tab through items)
+- [x] Test mix-blend-mode across browsers (Safari, Chrome, Firefox)
 
 ### Sprint 5 — CMS Setup (Sanity v3)
-- [ ] Initialize Sanity Studio project
-- [ ] Define schema: `design` (id, title, slug, category[], tags[], image, width, height, designCode, description, fabricOptions, isNew, isTrending, isFeatured, sortOrder)
-- [ ] Define schema: `category` (name, slug, description, heroImage, seoMeta)
-- [ ] Define schema: `testimonial` (clientName, photo, rating, text, date)
-- [ ] Define schema: `faq` (question, answer, order)
-- [ ] Define schema: `siteSettings` (shopName, city, phone, whatsapp, instagram, address, mapsLink, hours, logo, tagline)
-- [ ] Define schema: `video` (title, file, poster, type: reel/behind-the-scenes)
-- [ ] Set up Sanity image pipeline (auto-crop, hotspot)
-- [ ] Create bulk upload script for 500+ design images
-- [ ] Write a "How to Add Designs" guide document
-- [ ] Deploy Sanity Studio to Sanity hosting
+- [x] Initialize Sanity Studio project
+- [x] Define schema: `design` (id, title, slug, category[], tags[], image, width, height, designCode, description, fabricOptions, isNew, isTrending, isFeatured, sortOrder)
+- [x] Define schema: `category` (name, slug, description, heroImage, seoMeta)
+- [x] Define schema: `testimonial` (clientName, photo, rating, text, date)
+- [x] Define schema: `faq` (question, answer, order)
+- [x] Define schema: `siteSettings` (shopName, city, phone, whatsapp, instagram, address, mapsLink, hours, logo, tagline)
+- [x] Define schema: `video` (title, file, poster, type: reel/behind-the-scenes)
+- [x] Set up Sanity image pipeline (auto-crop, hotspot)
+- [x] Create bulk upload script for 500+ design images
+- [x] Write a "How to Add Designs" guide document
+- [x] Deploy Sanity Studio configuration (embeddable `/studio` route)
 
 ### Sprint 6 — Image Pipeline & Optimization System
 - [ ] Set up Cloudinary or Vercel image optimization

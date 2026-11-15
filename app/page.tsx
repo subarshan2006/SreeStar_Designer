@@ -1,56 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
+import { Navbar } from '@/components/navigation/Navbar'
 import { GiantWordmark } from '@/components/ui/GiantWordmark'
 import { Button } from '@/components/ui/Button'
 import { Heading, Body, Caption, Label, DesignCodeBadge } from '@/components/ui/typography'
 import { SITE_CONFIG } from '@/lib/constants'
-import { ArrowRight, Sparkles, CheckCircle2, Sliders, Scissors, Calendar, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Sparkles, CheckCircle2, Sliders, Scissors, Calendar, ShieldCheck, Layers } from 'lucide-react'
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-ivory text-charcoal flex flex-col justify-between selection:bg-maroon selection:text-ivory">
       {/* =========================================================
-          MINIMAL FIXED NAV (mix-blend-mode award aesthetic)
+          SPRINT 4: AWARD-LEVEL FIXED NAV (with Category Overlay & Booking Sheet)
           ========================================================= */}
-      <nav className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 md:px-10 py-5 flex items-center justify-between text-xs tracking-widest uppercase font-mono blend-difference text-white pointer-events-auto">
-        {/* Left: + Collections */}
-        <div className="flex items-center gap-6">
-          <Link
-            href="/styleguide"
-            className="group inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-          >
-            <span className="text-sm font-bold text-maroon-accent">+</span>
-            <span>Collections</span>
-            <span className="hidden sm:inline-block text-[10px] opacity-60">(500+)</span>
-          </Link>
-          <Link
-            href="/styleguide"
-            className="hidden md:inline-flex items-center gap-1 text-[11px] bg-white/10 px-2 py-0.5 rounded border border-white/20 hover:bg-white/20 transition-all"
-          >
-            <Sliders className="w-3 h-3" />
-            <span>Design System & Styleguide</span>
-          </Link>
-        </div>
-
-        {/* Center-Right Links */}
-        <div className="hidden lg:flex items-center gap-8 font-sans text-xs tracking-widest uppercase opacity-90">
-          <a href="#sprints" className="hover:opacity-100 transition-opacity">Sprint 1–3 Status</a>
-          <a href="#categories" className="hover:opacity-100 transition-opacity">Categories</a>
-          <a href="#about" className="hover:opacity-100 transition-opacity">About Studio</a>
-          <a href="#contact" className="hover:opacity-100 transition-opacity">Contact</a>
-        </div>
-
-        {/* Right CTA */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/styleguide"
-            className="inline-flex items-center gap-2 border border-white/40 px-3.5 py-1.5 rounded-full hover:bg-white hover:text-black transition-all font-mono text-[11px]"
-          >
-            <span>Book a Fitting</span>
-            <span className="font-bold">+</span>
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* =========================================================
           SPRINT 3: HERO SECTION WITH GIANT WORDMARK & OVERLAP ZONE
